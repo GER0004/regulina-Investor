@@ -11,7 +11,8 @@
     :root{
       --bg:#090e1a; --ink:#e6f0ff; --sky:#6ab0ff; --indigo:#2e6cf6; --violet:#8b5cf6;
       --section-y:60px; --gap-card:24px; --btn-h:44px; --btn-gap:14px; --mcta-pad:96px;
-      --header-h:56px;
+      --header-h:56px; --hero-pt:72px; /* desktop base */
+      --sheet-z:1110; --backdrop-z:1100; --header-z:1000; --lang-z:950;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -42,31 +43,38 @@
     .tile{padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .bullet{display:flex;gap:10px;align-items:flex-start}
     .bullet i{margin-top:2px}
-
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.1rem;border-radius:16px;font-weight:600;min-height:var(--btn-h)}
     .btn-primary{background:linear-gradient(90deg,var(--sky),var(--indigo)); box-shadow:0 0 24px rgba(99,102,241,.35)}
     .btn-ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15)}
     .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin:var(--btn-gap) 0}
 
-    header{position:sticky;top:0;z-index:8;background:rgba(255,255,255,.05);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.12)}
-    .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0;min-height:var(--header-h)}
-    nav a{color:#d0daea} nav a:hover{color:#fff}
+    /* Header */
+    header{position:sticky;top:0;z-index:var(--header-z);background:rgba(8,12,22,.55);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.12)}
+    .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:8px 0;min-height:var(--header-h)}
+    .main-nav{display:flex;gap:18px;font-size:.95rem}
+    .main-nav a{color:#d0daea} .main-nav a:hover{color:#fff}
 
-    /* Burger visible on mobile, hide desktop nav */
+    /* Logo (always EN) */
+    .logo{display:flex;align-items:center;gap:10px}
+    .logo svg{height:24px;display:block}
+    @media (min-width:768px){ .logo svg{height:28px} }
+
+    /* Burger on mobile */
     #burger{display:none;align-items:center;justify-content:center;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08)}
     @media (max-width:768px){
-      nav{display:none}
+      .main-nav{display:none !important;}
       #burger{display:flex}
     }
 
     /* Language switch (fixed) */
-    .lang{position:fixed;top:60px;right:20px;z-index:9;display:flex;flex-direction:column;gap:4px;padding:4px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);font-size:.85rem;transition:opacity .2s ease, transform .2s ease}
-    .lang button{border:0;background:transparent;color:#cfe2ff;padding:.28rem .5rem;border-radius:10px;cursor:pointer;line-height:1}
+    .lang{position:fixed;right:calc(16px + env(safe-area-inset-right));top:58px;z-index:var(--lang-z);display:flex;flex-direction:column;gap:4px;padding:4px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);font-size:.78rem;transition:opacity .2s ease, transform .2s ease}
+    .lang button{border:0;background:transparent;color:#cfe2ff;padding:.25rem .45rem;border-radius:10px;cursor:pointer;line-height:1}
     .lang button.active{background:rgba(255,255,255,.12);color:#fff}
     .lang.lang--hidden{opacity:0;transform:translateY(-6px);pointer-events:none}
 
     /* Sections */
-    .hero{padding:calc(var(--section-y) + 72px) 0 var(--section-y)}  /* +72px clear under sticky header */
+    .hero{padding:var(--hero-pt) 0 var(--section-y)}
+    @media (max-width:768px){ .hero{padding:48px 0 var(--section-y)} }
     .section{padding:var(--section-y) 0}
     .grad-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);margin:0}
 
@@ -84,7 +92,7 @@
     .metric{font-size:1.5rem;font-weight:700;margin-top:8px}
 
     /* Mobile bottom CTA */
-    .m-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom));padding:0 16px;z-index:7;display:none;width:100%;max-width:1100px}
+    .m-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom));padding:0 16px;z-index:900;display:none;width:100%;max-width:1100px}
     @supports (bottom: constant(safe-area-inset-bottom)){ .m-cta{bottom:calc(12px + constant(safe-area-inset-bottom))} }
     .m-cta .bar{display:flex;gap:10px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:8px;transform:scale(.5);transform-origin:center bottom}
     .m-cta .btn{flex:1;min-height:var(--btn-h)}
@@ -98,8 +106,16 @@
     .foot{text-align:center;color:#a8b6cf}
 
     /* ===== SHEET MOBILE MENU ===== */
-    .sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:9}
-    .sheet{position:fixed;left:50%;transform:translate(-50%,-12px);top:0;width:100%;max-width:1100px;background:rgba(6,10,20,.92);backdrop-filter:blur(10px);border-radius:20px 20px 0 0;box-shadow:0 18px 60px rgba(0,0,0,.5);padding: max(16px, env(safe-area-inset-top)) 20px 16px; height:auto; max-height:min(90dvh, 90svh); overflow:auto; z-index:10; opacity:0; pointer-events:none; transition:transform .25s ease, opacity .25s ease}
+    .sheet-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.48);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:var(--backdrop-z)}
+    .sheet{
+      position:fixed;left:50%;transform:translate(-50%,-12px);top:0;width:100%;max-width:1100px;
+      background:rgba(6,10,20,.92);backdrop-filter:blur(10px);
+      border-radius:20px 20px 0 0;box-shadow:0 18px 60px rgba(0,0,0,.5);
+      padding:max(16px, env(safe-area-inset-top)) 20px 16px;
+      height:auto; min-height:min(60dvh, 60svh); max-height:min(90dvh, 90svh);
+      overflow:auto; z-index:var(--sheet-z); opacity:0; pointer-events:none;
+      transition:transform .25s ease, opacity .25s ease;
+    }
     .sheet-title{font-weight:700;margin:0 0 6px;color:#dfe8ff}
     .nav-sheet a{display:block;padding:14px 18px;min-height:44px;border-radius:12px;margin:6px 0;color:#dce6fb;border:1px solid transparent}
     .nav-sheet a:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.08)}
@@ -112,15 +128,23 @@
   </style>
 </head>
 <body>
+  <!-- anchor top -->
+  <div id="top"></div>
+
   <header>
     <div class="container row">
-      <div class="muted" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:55vw">
-        <i class="fa-solid fa-flask-vial" style="margin-right:.5rem;color:#cfd6e6"></i>
-        <strong>Regulina-T™ | RGN-T1™ IMMUNOREGULATOR</strong>
-      </div>
+      <!-- Logo (always EN) -->
+      <a href="#top" class="logo" aria-label="Regulina-T Home">
+        <svg viewBox="0 0 640 28" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Regulina-T™ | RGN-T1™ IMMUNOREGULATOR">
+          <g fill="#e8efff">
+            <path d="M16.8 0c1 0 1.9.5 2.4 1.3l9.3 15.2c1.4 2.3-.2 5.2-2.9 5.2H8.1c-2.7 0-4.3-2.9-2.9-5.2L14.5 1.3C15 0.5 15.9 0 16.8 0zM9 18.5h15.6c.6 0 1 .7.7 1.2l-1.4 2.3c-.2.3-.5.5-.9.5H10.6c-.4 0-.7-.2-.9-.5l-1.4-2.3c-.3-.5.1-1.2.7-1.2z"/>
+            <text x="40" y="21" font-size="18" font-family="Inter, Segoe UI, Arial" font-weight="700">Regulina-T™ | RGN-T1™ IMMUNOREGULATOR</text>
+          </g>
+        </svg>
+      </a>
 
       <!-- Desktop nav -->
-      <nav class="muted" style="display:flex;gap:18px;font-size:.95rem">
+      <nav class="main-nav">
         <a href="#tech" data-i18n="nav.tech">Tech</a>
         <a href="#license" data-i18n="nav.license">License</a>
         <a href="#market" data-i18n="nav.market">Market</a>
@@ -295,7 +319,6 @@
 
       <div class="grid grid-2">
         <div class="tile">
-          <!-- Email (NDA/Deck) -->
           <a class="btn btn-primary" id="emailNDA" data-email href="#">
             <i class="fa-solid fa-envelope"></i>
             <span style="margin-left:.5rem" data-i18n="contact.btn_ndadeck">Request NDA / Investor Deck</span>
@@ -361,53 +384,29 @@
           t4: { title: "Escrow transfer", text: "Materials and samples delivered via a protected escrow structure." },
           note: "* The technology is subject to clinical validation. Commercialization includes preclinical work and Phases I–III per regulatory requirements."
         },
-        license: {
-          h2: "Licensing Model",
-          i1: "<b>Global exclusive license</b> for 20 years.",
-          i2: "Licensee obligations: preclinical, in vitro/in vivo and clinical Phases I–III.",
-          i3: "Authorship & IP retained by TK; samples & full package via escrow."
-        },
-        market: {
-          h2: "Market Potential",
-          m1: { label: "Potential patients", value: "~2.5B" },
-          m2: { label: "Target patients / year", value: "~50M" },
-          m3: { label: "Expected revenue", value: ">$50B per year" }
-        },
+        license: { h2: "Licensing Model", i1: "<b>Global exclusive license</b> for 20 years.", i2: "Licensee obligations: preclinical, in vitro/in vivo and clinical Phases I–III.", i3: "Authorship & IP retained by TK; samples & full package via escrow." },
+        market: { h2: "Market Potential", m1:{label:"Potential patients", value:"~2.5B"}, m2:{label:"Target patients / year", value:"~50M"}, m3:{label:"Expected revenue", value:">$50B per year"} },
         pricing: {
-          h2: "Scientific & ethical pricing",
-          b1: "~9 injections/year (range 4–12).",
-          b2: "200 µg per dose — minimally sufficient.",
-          b3: "Average therapy cost: ~$900/year (max ~$1,600).",
-          b4: "Mass accessibility with sustainable unit economics.",
-          note: "Accessible pricing at scale with a transparent royalty model enables long-term revenues and strong social impact.",
-          win: "Win-Win for patients and licensee."
+          h2:"Scientific & ethical pricing",
+          b1:"~9 injections/year (range 4–12).",
+          b2:"200 µg per dose — minimally sufficient.",
+          b3:"Average therapy cost: ~$900/year (max ~$1,600).",
+          b4:"Mass accessibility with sustainable unit economics.",
+          note:"Accessible pricing at scale with a transparent royalty model enables long-term revenues and strong social impact.",
+          win:"Win-Win for patients and licensee."
         },
         escrow: {
-          h2: "Escrow Package Contents",
-          i1: "Patent and IP filings",
-          i2: "Molecular know-how (gene, vector, host, expression)",
-          i3: "Final drug formula (with codes)",
-          i4: "Stabilizing buffer",
-          i5: "Injectable form (IV/IM), baseline dosing",
-          i6: "Storage conditions and shelf-life",
-          i7: "Complete purification scheme to ≥95%",
-          note: "Materials and samples are delivered via a secure escrow structure."
+          h2:"Escrow Package Contents",
+          i1:"Patent and IP filings", i2:"Molecular know-how (gene, vector, host, expression)", i3:"Final drug formula (with codes)",
+          i4:"Stabilizing buffer", i5:"Injectable form (IV/IM), baseline dosing", i6:"Storage conditions and shelf-life", i7:"Complete purification scheme to ≥95%",
+          note:"Materials and samples are delivered via a secure escrow structure."
         },
-        contact: {
-          h2: "Contact the Author & IP Owner",
-          btn_ndadeck: "Request NDA / Investor Deck",
-          btn_whatsapp: "Open WhatsApp",
-          btn_email: "Send Email",
-          wa_label: "WhatsApp:",
-          email_label: "Email:",
-          req: "Available on request: regulatory requirements and clinical roadmap."
-        },
-        footer: { copy: "© TK — Author & owner of the Regulina-T™ platform" },
-        cta: { whatsapp: "WhatsApp", materials: "Materials" },
-        msg: {
-          subject: "Regulina-T – NDA / Investor Deck request",
-          body:
-`Hello! I’m interested in the Regulina-T™ Immunoregulator project.
+        contact:{ h2:"Contact the Author & IP Owner", btn_ndadeck:"Request NDA / Investor Deck", btn_whatsapp:"Open WhatsApp", btn_email:"Send Email", wa_label:"WhatsApp:", email_label:"Email:", req:"Available on request: regulatory requirements and clinical roadmap." },
+        footer:{ copy:"© TK — Author & owner of the Regulina-T™ platform" },
+        cta:{ whatsapp:"WhatsApp", materials:"Materials" },
+        msg:{
+          subject:"Regulina-T – NDA / Investor Deck request",
+          body:`Hello! I’m interested in the Regulina-T™ Immunoregulator project.
 Please share the NDA / Investor Deck and basic terms.
 
 Name:
@@ -421,68 +420,40 @@ Source: {{url}}`
         }
       },
       ru: {
-        nav: { title: "Меню", tech: "Технологии", license: "Лицензия", market: "Рынок", escrow: "Эскроу", contact: "Контакты" },
-        hero: {
-          kicker: "Первая в мире иммунорегенеративная платформа тимуса",
-          lead: "Основана на генно-инженерно полученном белке <b>RGN-T1™</b> (чистота ≥95%). Новая технология, способная восстанавливать функцию тимуса и регулировать иммунную систему.*"
+        nav: { title:"Меню", tech:"Технологии", license:"Лицензия", market:"Рынок", escrow:"Эскроу", contact:"Контакты" },
+        hero:{ kicker:"Первая в мире иммунорегенеративная платформа тимуса", lead:"Основана на генно-инженерно полученном белке <b>RGN-T1™</b> (чистота ≥95%). Новая технология, способная восстанавливать функцию тимуса и регулировать иммунную систему.*" },
+        usp:{ 1:"Иммунорегенерация тимуса", 2:"RGN-T1™ ≥95% чистота", 3:"Эскроу-готовый пакет ИС" },
+        tech:{
+          h2:"Технологическая основа", desc:"Цель платформы — восполнить снижение уровня RGN с возрастом и восстановить иммунный гомеостаз.",
+          t1:{ title:"Рекомбинантный белок RGN-T1™", text:"Лабораторно получаемый, воспроизводимый, чистота ≥95%." },
+          t2:{ title:"Know-how на молекулярном уровне", text:"Ген, вектор, хост-штамм, экспрессия и очистка." },
+          t3:{ title:"Инъекционная форма (IV/IM)", text:"Стандартная схема дозирования; хранение и стабильность." },
+          t4:{ title:"Передача через эскроу", text:"Материалы и образцы предоставляются через защищённую эскроу-структуру." },
+          note:"* Технология подлежит клинической валидации. Коммерциализация включает доклинику и фазы I–III по требованиям регуляторов."
         },
-        usp: { 1: "Иммунорегенерация тимуса", 2: "RGN-T1™ ≥95% чистота", 3: "Эскроу-готовый пакет ИС" },
-        tech: {
-          h2: "Технологическая основа",
-          desc: "Цель платформы — восполнить снижение уровня RGN с возрастом и восстановить иммунный гомеостаз.",
-          t1: { title: "Рекомбинантный белок RGN-T1™", text: "Лабораторно получаемый, воспроизводимый, чистота ≥95%." },
-          t2: { title: "Know-how на молекулярном уровне", text: "Ген, вектор, хост-штамм, экспрессия и очистка." },
-          t3: { title: "Инъекционная форма (IV/IM)", text: "Стандартная схема дозирования; хранение и стабильность." },
-          t4: { title: "Передача через эскроу", text: "Материалы и образцы предоставляются через защищённую эскроу-структуру." },
-          note: "* Технология подлежит клинической валидации. Коммерциализация включает доклинику и фазы I–III по требованиям регуляторов."
+        license:{ h2:"Лицензионная модель", i1:"<b>Глобальная эксклюзивная лицензия</b> сроком на 20 лет.", i2:"Обязанности лицензиата: доклиника, in vitro/in vivo и клинические фазы I–III.", i3:"Авторство и права ИС сохраняются за TK; образцы и полный пакет — через эскроу." },
+        market:{ h2:"Потенциал рынка", m1:{label:"Потенциальные пациенты", value:"~2,5 млрд"}, m2:{label:"Целевая аудитория / год", value:"~50 млн"}, m3:{label:"Ожидаемая выручка", value:"> $50 млрд в год"} },
+        pricing:{
+          h2:"Научные и этические основы ценообразования",
+          b1:"В среднем 9 инъекций/год (диапазон 4–12).",
+          b2:"200 мкг белка на дозу — минимально достаточный объём.",
+          b3:"Средняя стоимость терапии: ~$900/год (макс. ~$1 600/год).",
+          b4:"Массовая доступность при устойчивой экономике проекта.",
+          note:"Доступная цена при масштабировании и прозрачная модель роялти обеспечивают долгосрочную выручку и высокий социальный эффект.",
+          win:"Win-Win: пациент и лицензиат."
         },
-        license: {
-          h2: "Лицензионная модель",
-          i1: "<b>Глобальная эксклюзивная лицензия</b> сроком на 20 лет.",
-          i2: "Обязанности лицензиата: доклиника, in vitro/in vivo и клинические фазы I–III.",
-          i3: "Авторство и права ИС сохраняются за TK; образцы и полный пакет — через эскроу."
+        escrow:{
+          h2:"Состав эскроу-пакета",
+          i1:"Патентные и ИС-заявки", i2:"Генно-инженерное know-how (ген, вектор, хост, экспрессия)", i3:"Окончательная формула препарата (с кодами)",
+          i4:"Стабилизирующий буфер", i5:"Инъекционная форма (IV/IM), базовая схема дозирования", i6:"Условия хранения и срок годности", i7:"Полная схема очистки до ≥95%",
+          note:"Материалы и образцы поставляются через безопасную эскроу-структуру."
         },
-        market: {
-          h2: "Потенциал рынка",
-          m1: { label: "Потенциальные пациенты", value: "~2,5 млрд" },
-          m2: { label: "Целевая аудитория / год", value: "~50 млн" },
-          m3: { label: "Ожидаемая выручка", value: "> $50 млрд в год" }
-        },
-        pricing: {
-          h2: "Научные и этические основы ценообразования",
-          b1: "В среднем 9 инъекций/год (диапазон 4–12).",
-          b2: "200 мкг белка на дозу — минимально достаточный объём.",
-          b3: "Средняя стоимость терапии: ~$900/год (макс. ~$1 600/год).",
-          b4: "Массовая доступность при устойчивой экономике проекта.",
-          note: "Доступная цена при масштабировании и прозрачная модель роялти обеспечивают долгосрочную выручку и высокий социальный эффект.",
-          win: "Win-Win: пациент и лицензиат."
-        },
-        escrow: {
-          h2: "Состав эскроу-пакета",
-          i1: "Патентные и ИС-заявки",
-          i2: "Генно-инженерное know-how (ген, вектор, хост, экспрессия)",
-          i3: "Окончательная формула препарата (с кодами)",
-          i4: "Стабилизирующий буфер",
-          i5: "Инъекционная форма (IV/IM), базовая схема дозирования",
-          i6: "Условия хранения и срок годности",
-          i7: "Полная схема очистки до ≥95%",
-          note: "Материалы и образцы поставляются через безопасную эскроу-структуру."
-        },
-        contact: {
-          h2: "Связаться с автором и правообладателем",
-          btn_ndadeck: "Запросить NDA / Investor Deck",
-          btn_whatsapp: "Открыть WhatsApp",
-          btn_email: "Написать письмо",
-          wa_label: "WhatsApp:",
-          email_label: "Email:",
-          req: "По запросу: требования регуляторов и дорожная карта клинических фаз."
-        },
-        footer: { copy: "© TK — Автор и владелец платформы Regulina-T™" },
-        cta: { whatsapp: "WhatsApp", materials: "Материалы" },
-        msg: {
-          subject: "Regulina-T — Запрос NDA / инвест-материалов",
-          body:
-`Здравствуйте! Интересуюсь проектом Regulina-T™ Immunoregulator.
+        contact:{ h2:"Связаться с автором и правообладателем", btn_ndadeck:"Запросить NDA / Investor Deck", btn_whatsapp:"Открыть WhatsApp", btn_email:"Написать письмо", wa_label:"WhatsApp:", email_label:"Email:", req:"По запросу: требования регуляторов и дорожная карта клинических фаз." },
+        footer:{ copy:"© TK — Автор и владелец платформы Regulina-T™" },
+        cta:{ whatsapp:"WhatsApp", materials:"Материалы" },
+        msg:{
+          subject:"Regulina-T — Запрос NDA / инвест-материалов",
+          body:`Здравствуйте! Интересуюсь проектом Regulina-T™ Immunoregulator.
 Пожалуйста, пришлите NDA / инвест-материалы и базовые условия.
 
 Имя:
@@ -501,6 +472,7 @@ WhatsApp:
     const btnRU = document.getElementById('btnRU');
     const btnEN = document.getElementById('btnEN');
     const langSwitch = document.getElementById('langSwitch');
+    const LS_KEY = 'regulina_lang';
 
     function fillText(lang){
       const dict = i18n[lang] || i18n.en;
@@ -531,12 +503,13 @@ WhatsApp:
       updateContactLinks(lang);
       btnRU.classList.toggle('active', lang==='ru');
       btnEN.classList.toggle('active', lang==='en');
-      localStorage.setItem('lang', lang);
+      localStorage.setItem(LS_KEY, lang);
     }
     btnRU.addEventListener('click', ()=>applyLang('ru'));
     btnEN.addEventListener('click', ()=>applyLang('en'));
-    // Default EN
-    applyLang(localStorage.getItem('lang') || 'en');
+    // Default EN (migrate from old key if present)
+    const saved = localStorage.getItem(LS_KEY) || localStorage.getItem('lang') || 'en';
+    applyLang(saved);
 
     // USP reveal animation
     const io = new IntersectionObserver((entries)=>{
@@ -569,49 +542,24 @@ WhatsApp:
       if (lastFocus) lastFocus.focus();
     }
 
-    burger.addEventListener('click', ()=>{
-      const isOpen = document.body.classList.contains('is-menu-open');
-      isOpen ? closeMenu() : openMenu();
-    });
+    burger.addEventListener('click', ()=>{ document.body.classList.contains('is-menu-open') ? closeMenu() : openMenu(); });
     sheetClose.addEventListener('click', closeMenu);
     backdrop.addEventListener('click', closeMenu);
-    // Close on ESC
-    document.addEventListener('keydown', (e)=>{
-      if(e.key === 'Escape' && document.body.classList.contains('is-menu-open')) closeMenu();
-    });
-    // Close on nav click
-    sheetNav.addEventListener('click', (e)=>{
-      if(e.target.closest('a')){
-        closeMenu();
-      }
-    });
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape' && document.body.classList.contains('is-menu-open')) closeMenu(); });
+    sheetNav.addEventListener('click', (e)=>{ if(e.target.closest('a')) closeMenu(); });
 
-    // Active highlight by hash
-    function setActiveByHash(){
-      const hash = window.location.hash || '#tech';
-      document.querySelectorAll('.nav-sheet a').forEach(a=>{
-        a.classList.toggle('active', a.getAttribute('href')===hash);
-      });
-    }
-    setActiveByHash();
-    window.addEventListener('hashchange', setActiveByHash);
-
-    // Swipe down to close (simple)
+    // Swipe down to close
     let startY=null;
     sheet.addEventListener('touchstart', e=>{ startY = e.touches[0].clientY; }, {passive:true});
-    sheet.addEventListener('touchmove', e=>{
-      if(startY==null) return;
-      const dy = e.touches[0].clientY - startY;
-      if(dy>80){ closeMenu(); startY=null; }
-    }, {passive:true});
+    sheet.addEventListener('touchmove', e=>{ if(startY==null) return; const dy = e.touches[0].clientY - startY; if(dy>80){ closeMenu(); startY=null; } }, {passive:true});
     sheet.addEventListener('touchend', ()=>{ startY=null; });
 
     // Focus trap
     let focusTrapCleanup = null;
     function trapFocus(modal){
-      const selectors = 'a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex]:not([tabindex="-1"])';
-      const focusables = Array.from(modal.querySelectorAll(selectors)).filter(el=>el.offsetParent!==null || el === modal);
-      const first = focusables[0], last = focusables[focusables.length-1];
+      const selectors = 'a[href], area[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+      const f = Array.from(modal.querySelectorAll(selectors));
+      const first = f[0], last = f[f.length-1];
       if(first) first.focus();
       function onKey(e){
         if(e.key !== 'Tab') return;
@@ -622,6 +570,40 @@ WhatsApp:
       focusTrapCleanup = ()=>document.removeEventListener('keydown', onKey);
     }
     function releaseFocus(){ if(focusTrapCleanup){ focusTrapCleanup(); focusTrapCleanup=null; } }
+
+    // ----- Smooth scroll with offset (header height) -----
+    const OFFSET = 72;
+    function scrollToHash(hash, smooth=true){
+      if(!hash) return;
+      const target = document.querySelector(hash);
+      if(!target) return;
+      const top = window.scrollY + target.getBoundingClientRect().top - OFFSET;
+      window.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+    }
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const h = a.getAttribute('href');
+        if(h && h.startsWith('#')){ e.preventDefault(); scrollToHash(h); history.replaceState(null,'',h); }
+      });
+    });
+    // Deep links on load
+    window.addEventListener('load', ()=>{ if(location.hash) scrollToHash(location.hash, false); });
+
+    // Active highlight in sheet while open
+    const sections = ['#tech','#license','#market','#escrow','#contact'].map(sel=>document.querySelector(sel)).filter(Boolean);
+    const mapLink = {};
+    document.querySelectorAll('.nav-sheet a').forEach(a=>{ mapLink[a.getAttribute('href')] = a; });
+    const spy = new IntersectionObserver((entries)=>{
+      if(!document.body.classList.contains('is-menu-open')) return;
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          const id = '#'+e.target.id;
+          Object.values(mapLink).forEach(n=>n.classList.remove('active'));
+          if(mapLink[id]) mapLink[id].classList.add('active');
+        }
+      });
+    }, {rootMargin:'-40% 0px -50% 0px', threshold:0.01});
+    sections.forEach(sec=>spy.observe(sec));
   </script>
 </body>
 </html>
