@@ -1,184 +1,86 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#090e1a" />
   <title>Regulina-T™ | RGN-T1™ IMMUNOREGULATOR — Investor One-Pager</title>
-  <meta name="description" content="Regulina-T™ — первая в мире иммунорегенеративная платформа тимуса на основе RGN-T1™ (≥95% чистоты). Bilingual investor landing page.">
-
-  <!-- Font Awesome (профессиональные иконки) -->
+  <meta name="description" content="Regulina-T™ — the world's first thymus immuno-regenerative platform powered by RGN-T1™ (≥95% purity). Bilingual investor landing page.">
+  <!-- Font Awesome (icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
-
   <style>
     :root{
       --bg:#090e1a; --ink:#e6f0ff; --sky:#6ab0ff; --indigo:#2e6cf6; --violet:#8b5cf6; --emerald:#21e3b5; --muted:#a7b3c6;
-      --section-y:60px;   /* единые отступы секций сверху/снизу */
-      --gap-card:24px;    /* одинаковые зазоры между карточками/элементами */
-      --btn-h:44px;       /* единая высота кнопок */
-      --btn-gap:14px;     /* одинаковые интервалы между рядами кнопок */
-      --mcta-pad:96px;    /* запас снизу под мобильную панель */
+      --section-y:60px; --gap-card:24px; --btn-h:44px; --btn-gap:14px; --mcta-pad:96px;
     }
-
     *{box-sizing:border-box}
     html,body{height:100%}
     html,body{
       margin:0;padding:0;overflow-x:hidden;
-      /* Фон без background-attachment: fixed. Тянется на всю ширину iPhone. */
       background:
         radial-gradient(60vw 35vw at 20% -10%, rgba(139,92,246,.18), transparent 60%),
         radial-gradient(55vw 35vw at 95% 10%,  rgba(46,108,246,.18), transparent 60%),
         radial-gradient(70vw 40vw at 30% 105%, rgba(33,227,181,.12), transparent 60%),
         var(--bg);
-      background-repeat:no-repeat;
-      background-attachment:scroll;
-      color:#fff;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background-repeat:no-repeat; background-attachment:scroll;
+      color:#fff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
     }
-
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
     .muted{color:#cfd6e6}
-
-    /* типографика и абзацы — единообразно */
-    p, ul, ol{margin:0 0 16px; line-height:1.6}
+    p,ul,ol{margin:0 0 16px; line-height:1.6}
     ul{padding-left:1.1rem}
     .lead{color:#dce6fb;font-size:1.05rem}
     .subtle{color:#9fb2cf;font-size:.95rem}
-
     .kicker{letter-spacing:.2em;text-transform:uppercase;color:#c7d2e0;font-size:.82rem}
-    .title{
-      font-size:clamp(34px,5vw,60px);line-height:1.1;font-weight:700;
-      background:linear-gradient(90deg,#aee2ff,#c7c9ff,#b7ffe8);
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-    }
+    .title{font-size:clamp(34px,5vw,60px);line-height:1.1;font-weight:700;background:linear-gradient(90deg,#aee2ff,#c7c9ff,#b7ffe8);-webkit-background-clip:text;background-clip:text;color:transparent}
     .h2{font-size:clamp(26px,3.5vw,38px);font-weight:700}
-
-    /* сетки и карточки */
     .grid{display:grid;gap:var(--gap-card)}
     .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
     @media (max-width:900px){ .grid-2,.grid-3{grid-template-columns:1fr} }
-
-    .tile{
-      padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.12);
-      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
-      box-shadow:0 10px 30px rgba(0,0,0,.25);
-    }
+    .tile{padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .bullet{display:flex;gap:10px;align-items:flex-start}
     .bullet i{margin-top:2px}
-
-    /* кнопки — единая высота и интервалы */
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-         padding:.8rem 1.1rem;border-radius:16px;font-weight:600;min-height:var(--btn-h)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.8rem 1.1rem;border-radius:16px;font-weight:600;min-height:var(--btn-h)}
     .btn-primary{background:linear-gradient(90deg,var(--sky),var(--indigo)); box-shadow:0 0 24px rgba(99,102,241,.35)}
     .btn-ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15)}
-    .btn-row{display:flex;flex-wrap:wrap;gap:12px; margin:var(--btn-gap) 0}
-
-    /* шапка */
-    header{
-      position:sticky;top:0;z-index:5;
-      background:rgba(255,255,255,.05);backdrop-filter:blur(6px);
-      border-bottom:1px solid rgba(255,255,255,.12)
-    }
+    .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin:var(--btn-gap) 0}
+    header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.05);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.12)}
     nav a{color:#d0daea} nav a:hover{color:#fff}
     .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
-
-    /* Переключатель языка: fixed, компактнее и выше */
-    .lang{
-      position:fixed; top:60px; right:20px; z-index:10;
-      display:flex; flex-direction:column; gap:4px;
-      padding:4px; border:1px solid rgba(255,255,255,.15);
-      border-radius:12px; background:rgba(255,255,255,.08);
-      backdrop-filter:blur(6px); font-size:.85rem; /* ~ -15% */
-    }
+    .lang{position:fixed;top:60px;right:20px;z-index:10;display:flex;flex-direction:column;gap:4px;padding:4px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(255,255,255,.08);backdrop-filter:blur(6px);font-size:.85rem}
     .lang button{border:0;background:transparent;color:#cfe2ff;padding:.28rem .5rem;border-radius:10px;cursor:pointer;line-height:1}
     .lang button.active{background:rgba(255,255,255,.12);color:#fff}
-
-    /* секции — единый вертикальный ритм */
     .hero{padding:var(--section-y) 0}
     .section{padding:var(--section-y) 0}
-    .grad-line{
-      height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
-      margin:0; /* без лишних отступов, ритм задают секции */
-    }
-
-    /* языковые блоки */
-    [data-lang="ru"] .i18n-en{display:none}
-    [data-lang="en"] .i18n-ru{display:none}
-
-    /* ===== USP: капсулы с градиентной обводкой и glow ===== */
+    .grad-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);margin:0}
+    /* USP pills */
     .usp{margin-top:18px}
-    .usp-grid{
-      display:grid; gap:12px;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-    }
+    .usp-grid{display:grid;gap:12px;grid-template-columns:repeat(3,minmax(0,1fr))}
     @media (max-width:900px){ .usp-grid{grid-template-columns:1fr} }
-
-    .usp-item{
-      position:relative; border-radius:999px;
-      padding:12px 16px; display:flex; align-items:center; gap:12px;
-      background:rgba(255,255,255,.06);
-      box-shadow:
-        0 10px 30px rgba(0,0,0,.25),
-        0 0 22px rgba(106,176,255,.10),
-        0 0 28px rgba(139,92,246,.06);
-      overflow:hidden;
-      opacity:0; transform:translateY(10px); /* для анимации появления */
-    }
-    /* градиентная «обводка» через маску */
-    .usp-item::before{
-      content:""; position:absolute; inset:0; padding:1px; border-radius:inherit;
-      background:linear-gradient(90deg, var(--sky), var(--violet));
-      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-      -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
-    }
-    /* мягкий внутренний glow */
-    .usp-item::after{
-      content:""; position:absolute; inset:-12px; border-radius:inherit;
-      background:radial-gradient(30rem 8rem at 20% 50%, rgba(106,176,255,.12), transparent 60%);
-      filter:blur(16px); z-index:-1;
-    }
-    .usp-icon{font-size:1.15rem; color:#d6e6ff; transition:transform .25s ease, filter .25s ease}
-    .usp-text{font-weight:600; letter-spacing:.2px}
-    .usp-item:hover .usp-icon,
-    .usp-item:active .usp-icon{
-      filter:drop-shadow(0 0 8px rgba(106,176,255,.7));
-      transform:translateY(-1px) scale(1.02);
-    }
-    /* состояние после входа в зону видимости */
-    .usp-item.in{opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease}
-
-    /* Мобильная нижняя панель CTA — по центру и с safe-area */
-    .m-cta{
-      position:fixed; left:50%; transform:translateX(-50%);
-      bottom:calc(12px + env(safe-area-inset-bottom));
-      padding:0 16px; z-index:10; display:none; width:100%; max-width:1100px;
-    }
-    @supports (bottom: constant(safe-area-inset-bottom)){
-      .m-cta{bottom:calc(12px + constant(safe-area-inset-bottom))}
-    }
-    .m-cta .bar{
-      display:flex;gap:10px;border-radius:16px;background:rgba(255,255,255,.1);
-      border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:8px;
-      transform:scale(.5); transform-origin:center bottom; /* компактно; стиль сохранён */
-    }
+    .usp-item{position:relative;border-radius:999px;padding:12px 16px;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);box-shadow:0 10px 30px rgba(0,0,0,.25),0 0 22px rgba(106,176,255,.10),0 0 28px rgba(139,92,246,.06);overflow:hidden;opacity:0;transform:translateY(10px)}
+    .usp-item::before{content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;background:linear-gradient(90deg,var(--sky),var(--violet));-webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+    .usp-item::after{content:"";position:absolute;inset:-12px;border-radius:inherit;background:radial-gradient(30rem 8rem at 20% 50%, rgba(106,176,255,.12), transparent 60%);filter:blur(16px);z-index:-1}
+    .usp-icon{font-size:1.15rem;color:#d6e6ff;transition:transform .25s ease, filter .25s ease}
+    .usp-text{font-weight:600;letter-spacing:.2px}
+    .usp-item:hover .usp-icon,.usp-item:active .usp-icon{filter:drop-shadow(0 0 8px rgba(106,176,255,.7));transform:translateY(-1px) scale(1.02)}
+    .usp-item.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
+    /* Mobile bottom CTA */
+    .m-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom));padding:0 16px;z-index:10;display:none;width:100%;max-width:1100px}
+    @supports (bottom: constant(safe-area-inset-bottom)){ .m-cta{bottom:calc(12px + constant(safe-area-inset-bottom))} }
+    .m-cta .bar{display:flex;gap:10px;border-radius:16px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:8px;transform:scale(.5);transform-origin:center bottom}
     .m-cta .btn{flex:1;min-height:var(--btn-h)}
     @media (max-width:768px){
       .m-cta{display:block}
-      /* запас снизу, чтобы панель не перекрывала контент */
       body{padding-bottom:calc(var(--mcta-pad) + env(safe-area-inset-bottom))}
-      @supports (padding: constant(safe-area-inset-bottom)){
-        body{padding-bottom:calc(var(--mcta-pad) + constant(safe-area-inset-bottom))}
-      }
+      @supports (padding: constant(safe-area-inset-bottom)){ body{padding-bottom:calc(var(--mcta-pad) + constant(safe-area-inset-bottom))} }
     }
-
-    /* футер — компактный, в общем ритме */
     footer.section{padding:var(--section-y) 0}
     .foot{text-align:center;color:#a8b6cf}
   </style>
 </head>
-<body data-lang="ru">
+<body>
   <header>
     <div class="container row">
       <div class="muted" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:55vw">
@@ -186,73 +88,47 @@
         <strong>Regulina-T™ | RGN-T1™ IMMUNOREGULATOR</strong>
       </div>
       <nav class="muted" style="display:flex;gap:18px;font-size:.95rem">
-        <a href="#tech">Tech</a>
-        <a href="#license">License</a>
-        <a href="#market">Market</a>
-        <a href="#escrow">Escrow</a>
-        <a href="#contact">Contact</a>
+        <a href="#tech" data-i18n="nav.tech">Tech</a>
+        <a href="#license" data-i18n="nav.license">License</a>
+        <a href="#market" data-i18n="nav.market">Market</a>
+        <a href="#escrow" data-i18n="nav.escrow">Escrow</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
-      <!-- Вертикальный переключатель языка (fixed) -->
-      <div class="lang"><button id="btnRU" class="active">RU</button><button id="btnEN">EN</button></div>
+      <div class="lang"><button id="btnRU">RU</button><button id="btnEN" class="active">EN</button></div>
     </div>
   </header>
 
   <main class="container">
     <!-- HERO -->
     <section class="hero">
-      <p class="kicker i18n-ru">Первая в мире иммунорегенеративная платформа тимуса</p>
-      <p class="kicker i18n-en">The world's first thymus immuno-regenerative platform</p>
+      <p class="kicker" data-i18n="hero.kicker">The world's first thymus immuno-regenerative platform</p>
       <h1 class="title">Regulina-T™ <span class="nowrap">IMMUNOREGULATOR</span></h1>
-      <p class="lead i18n-ru">Основана на генно-инженерно полученном белке <b>RGN-T1™</b> (чистота ≥95%). Новая технология, способная восстанавливать функцию тимуса и регулировать иммунную систему.*</p>
-      <p class="lead i18n-en">Powered by the gene-engineered protein <b>RGN-T1™</b> (≥95% purity). A breakthrough technology designed to restore thymus function and re-balance the immune system.*</p>
+      <p class="lead" data-i18n="hero.lead">Powered by the gene-engineered protein <b>RGN-T1™</b> (≥95% purity). A breakthrough technology designed to restore thymus function and re-balance the immune system.*</p>
 
-      <!-- ========= USP PILL BLOCK ========= -->
+      <!-- USP pills -->
       <div class="usp">
         <div class="usp-grid">
-          <div class="usp-item reveal">
-            <i class="fa-solid fa-dna usp-icon" aria-hidden="true"></i>
-            <div class="usp-text">
-              <span class="i18n-en">Thymus Immunoregeneration</span>
-              <span class="i18n-ru">Иммунорегенерация тимуса</span>
-            </div>
-          </div>
-          <div class="usp-item reveal">
-            <i class="fa-solid fa-flask-vial usp-icon" aria-hidden="true"></i>
-            <div class="usp-text">
-              <span class="i18n-en">RGN-T1™ ≥95% purity</span>
-              <span class="i18n-ru">RGN-T1™ ≥95% чистота</span>
-            </div>
-          </div>
-          <div class="usp-item reveal">
-            <i class="fa-solid fa-file-shield usp-icon" aria-hidden="true"></i>
-            <div class="usp-text">
-              <span class="i18n-en">Escrow-ready IP package</span>
-              <span class="i18n-ru">Эскроу-готовый пакет ИС</span>
-            </div>
-          </div>
+          <div class="usp-item reveal"><i class="fa-solid fa-dna usp-icon" aria-hidden="true"></i><div class="usp-text" data-i18n="usp.1">Thymus Immunoregeneration</div></div>
+          <div class="usp-item reveal"><i class="fa-solid fa-flask-vial usp-icon" aria-hidden="true"></i><div class="usp-text" data-i18n="usp.2">RGN-T1™ ≥95% purity</div></div>
+          <div class="usp-item reveal"><i class="fa-solid fa-file-shield usp-icon" aria-hidden="true"></i><div class="usp-text" data-i18n="usp.3">Escrow-ready IP package</div></div>
         </div>
       </div>
-      <!-- ========= /USP ========= -->
     </section>
 
     <div class="grad-line"></div>
 
     <!-- TECHNOLOGY -->
     <section id="tech" class="section anchor">
-      <h2 class="h2 i18n-ru">Технологическая основа</h2>
-      <h2 class="h2 i18n-en">Technology Foundation</h2>
-      <p class="lead i18n-ru">Цель платформы — восполнить снижение уровня RGN с возрастом и тем самым восстановить иммунный гомеостаз.</p>
-      <p class="lead i18n-en">The platform targets age-related RGN decline to restore immune homeostasis.</p>
+      <h2 class="h2" data-i18n="tech.h2">Technology Foundation</h2>
+      <p class="lead" data-i18n="tech.desc">The platform targets age-related RGN decline to restore immune homeostasis.</p>
 
       <div class="grid grid-2">
         <div class="tile">
           <div class="bullet">
             <i class="fa-solid fa-vial"></i>
             <div>
-              <b class="i18n-ru">Рекомбинантный белок RGN-T1™</b>
-              <b class="i18n-en">Recombinant RGN-T1™ protein</b>
-              <div class="subtle i18n-ru">Лабораторно получаемый, воспроизводимый, чистота ≥95%.</div>
-              <div class="subtle i18n-en">Lab-produced, reproducible, ≥95% purity.</div>
+              <b data-i18n="tech.t1.title">Recombinant RGN-T1™ protein</b>
+              <div class="subtle" data-i18n="tech.t1.text">Lab-produced, reproducible, ≥95% purity.</div>
             </div>
           </div>
         </div>
@@ -260,10 +136,8 @@
           <div class="bullet">
             <i class="fa-solid fa-dna"></i>
             <div>
-              <b class="i18n-ru">Know-how на молекулярном уровне</b>
-              <b class="i18n-en">Molecular-level know-how</b>
-              <div class="subtle i18n-ru">Ген, вектор, хост, экспрессия и очистка.</div>
-              <div class="subtle i18n-en">Gene, vector, host, expression & purification.</div>
+              <b data-i18n="tech.t2.title">Molecular-level know-how</b>
+              <div class="subtle" data-i18n="tech.t2.text">Gene, vector, host strain, expression & purification.</div>
             </div>
           </div>
         </div>
@@ -271,10 +145,8 @@
           <div class="bullet">
             <i class="fa-solid fa-syringe"></i>
             <div>
-              <b class="i18n-ru">Инъекционная форма (IV/IM)</b>
-              <b class="i18n-en">Injectable form (IV/IM)</b>
-              <div class="subtle i18n-ru">Дозирование, хранение, стабильность.</div>
-              <div class="subtle i18n-en">Dosing, storage, stability.</div>
+              <b data-i18n="tech.t3.title">Injectable form (IV/IM)</b>
+              <div class="subtle" data-i18n="tech.t3.text">Standard dosing scheme; storage and stability.</div>
             </div>
           </div>
         </div>
@@ -282,58 +154,52 @@
           <div class="bullet">
             <i class="fa-solid fa-lock"></i>
             <div>
-              <b class="i18n-ru">Передача через эскроу</b>
-              <b class="i18n-en">Escrow transfer</b>
-              <div class="subtle i18n-ru">Материалы и образцы — через защищённую структуру.</div>
-              <div class="subtle i18n-en">Materials & samples via secured structure.</div>
+              <b data-i18n="tech.t4.title">Escrow transfer</b>
+              <div class="subtle" data-i18n="tech.t4.text">Materials and samples delivered via a protected escrow structure.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <p class="subtle i18n-ru">* Технология находится на пути клинической валидации. Коммерциализация предполагает доклинику и фазы I–III.</p>
-      <p class="subtle i18n-en">* Subject to clinical validation. Commercialization includes preclinical and Phases I–III.</p>
+      <p class="subtle" data-i18n="tech.note">* The technology is subject to clinical validation. Commercialization includes preclinical work and Phases I–III per regulatory requirements.</p>
     </section>
 
     <div class="grad-line"></div>
 
     <!-- LICENSE -->
     <section id="license" class="section anchor">
-      <h2 class="h2 i18n-ru">Лицензионная модель</h2>
-      <h2 class="h2 i18n-en">Licensing Model</h2>
+      <h2 class="h2" data-i18n="license.h2">Licensing Model</h2>
       <div class="grid grid-3">
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-globe" style="margin-right:.5rem"></i><b>Global exclusive</b> — 20 years.</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-people-group" style="margin-right:.5rem"></i>Preclinical, in vitro/in vivo, Phases I–III.</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-shield" style="margin-right:.5rem"></i>IP retained by TK; escrow delivery.</div></div>
+        <div class="tile"><div class="subtle" data-i18n="license.i1"><b>Global exclusive license</b> for 20 years.</div></div>
+        <div class="tile"><div class="subtle" data-i18n="license.i2">Licensee obligations: preclinical, in vitro/in vivo and clinical Phases I–III.</div></div>
+        <div class="tile"><div class="subtle" data-i18n="license.i3">Authorship & IP retained by TK; samples & full package via escrow.</div></div>
       </div>
     </section>
 
     <div class="grad-line"></div>
 
-    <!-- MARKET -->
+    <!-- MARKET / PRICING -->
     <section id="market" class="section anchor">
-      <h2 class="h2 i18n-ru">Потенциал рынка</h2>
-      <h2 class="h2 i18n-en">Market Potential</h2>
-
+      <h2 class="h2" data-i18n="market.h2">Market Potential</h2>
       <div class="grid grid-3">
-        <div class="tile"><div class="subtle i18n-ru">Потенциальные пациенты</div><div class="subtle i18n-en">Potential patients</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~2,5 млрд</div></div>
-        <div class="tile"><div class="subtle i18n-ru">Целевая аудитория/год</div><div class="subtle i18n-en">Target patients / year</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~50 млн</div></div>
-        <div class="tile"><div class="subtle i18n-ru">Ожидаемая выручка</div><div class="subtle i18n-en">Expected revenue</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">&gt; $50 млрд/год</div></div>
+        <div class="tile"><div class="subtle" data-i18n="market.m1.label">Potential patients</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~2.5B</div></div>
+        <div class="tile"><div class="subtle" data-i18n="market.m2.label">Target patients / year</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~50M</div></div>
+        <div class="tile"><div class="subtle" data-i18n="market.m3.label">Expected revenue</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">&gt;$50B/yr</div></div>
       </div>
 
       <div class="grid grid-2" style="margin-top:var(--gap-card)">
         <div class="tile">
-          <div class="h2" style="font-size:1.05rem;margin-bottom:.8rem">Scientific & ethical pricing</div>
+          <div class="h2" style="font-size:1.05rem;margin-bottom:.8rem" data-i18n="pricing.h2">Scientific & ethical pricing</div>
           <ul class="subtle">
-            <li>~9 injections/year (range 4–12).</li>
-            <li>200 µg per dose — minimally sufficient.</li>
-            <li>Avg therapy cost ~$900/year (max ~$1,600).</li>
-            <li>Mass accessibility with sustainable unit economics.</li>
+            <li data-i18n="pricing.b1">~9 injections/year (range 4–12).</li>
+            <li data-i18n="pricing.b2">200 µg per dose — minimally sufficient.</li>
+            <li data-i18n="pricing.b3">Average therapy cost: ~$900/year (max ~$1,600).</li>
+            <li data-i18n="pricing.b4">Mass accessibility with sustainable unit economics.</li>
           </ul>
         </div>
         <div class="tile">
-          <p class="subtle">Accessible pricing at scale with a transparent royalty model enables long-term revenues and strong social impact.</p>
-          <div class="subtle" style="margin-top:8px"><i class="fa-solid fa-shield-heart" style="margin-right:.5rem"></i>Win-Win for patients and licensee.</div>
+          <p class="subtle" data-i18n="pricing.note">Accessible pricing at scale with a transparent royalty model enables long-term revenues and strong social impact.</p>
+          <div class="subtle" style="margin-top:8px"><i class="fa-solid fa-shield-heart" style="margin-right:.5rem"></i><span data-i18n="pricing.win">Win-Win for patients and licensee.</span></div>
         </div>
       </div>
     </section>
@@ -342,105 +208,244 @@
 
     <!-- ESCROW -->
     <section id="escrow" class="section anchor">
-      <h2 class="h2 i18n-ru">Состав эскроу-пакета</h2>
-      <h2 class="h2 i18n-en">Escrow Package Contents</h2>
+      <h2 class="h2" data-i18n="escrow.h2">Escrow Package Contents</h2>
       <div class="grid grid-3">
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-file-lines" style="margin-right:.5rem"></i>Patent and IP filings</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-dna" style="margin-right:.5rem"></i>Molecular know-how</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-flask-vial" style="margin-right:.5rem"></i>Final drug formula</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-droplet" style="margin-right:.5rem"></i>Stabilizing buffer</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-syringe" style="margin-right:.5rem"></i>Injectable form (IV/IM)</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-regular fa-snowflake" style="margin-right:.5rem"></i>Storage & shelf-life</div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-filter-circle-dollar" style="margin-right:.5rem"></i>Purification ≥95%</div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-file-lines" style="margin-right:.5rem"></i><span data-i18n="escrow.i1">Patent and IP filings</span></div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-dna" style="margin-right:.5rem"></i><span data-i18n="escrow.i2">Molecular know-how (gene, vector, host, expression)</span></div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-flask-vial" style="margin-right:.5rem"></i><span data-i18n="escrow.i3">Final drug formula (with codes)</span></div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-droplet" style="margin-right:.5rem"></i><span data-i18n="escrow.i4">Stabilizing buffer</span></div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-syringe" style="margin-right:.5rem"></i><span data-i18n="escrow.i5">Injectable form (IV/IM), baseline dosing</span></div></div>
+        <div class="tile"><div class="subtle"><i class="fa-regular fa-snowflake" style="margin-right:.5rem"></i><span data-i18n="escrow.i6">Storage conditions and shelf-life</span></div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-filter-circle-dollar" style="margin-right:.5rem"></i><span data-i18n="escrow.i7">Complete purification scheme to ≥95%</span></div></div>
       </div>
-      <p class="subtle">Materials and samples are delivered via a secure escrow structure.</p>
+      <p class="subtle" data-i18n="escrow.note">Materials and samples are delivered via a secure escrow structure.</p>
     </section>
 
     <div class="grad-line"></div>
 
     <!-- CONTACT -->
     <section id="contact" class="section anchor">
-      <h2 class="h2 i18n-ru">Связаться с автором и правообладателем</h2>
-      <h2 class="h2 i18n-en">Contact the Author & IP Owner</h2>
+      <h2 class="h2" data-i18n="contact.h2">Contact the Author & IP Owner</h2>
 
       <div class="grid grid-2">
         <div class="tile">
           <a class="btn btn-primary" href="mailto:anaklia20@gmail.com?subject=Regulina-T%20NDA%20%2F%20Investor%20Deck">
             <i class="fa-solid fa-envelope"></i>
-            <span style="margin-left:.5rem" class="i18n-ru">Запросить NDA/Investor Deck</span>
-            <span style="margin-left:.5rem" class="i18n-en">Request NDA / Investor Deck</span>
+            <span style="margin-left:.5rem" data-i18n="contact.btn_ndadeck">Request NDA / Investor Deck</span>
           </a>
 
           <div class="btn-row">
             <a class="btn btn-ghost" href="https://wa.me/447440448317" target="_blank" rel="noopener">
               <i class="fa-brands fa-whatsapp"></i>
-              <span style="margin-left:.5rem" class="i18n-ru">Открыть WhatsApp</span>
-              <span style="margin-left:.5rem" class="i18n-en">Open WhatsApp</span>
+              <span style="margin-left:.5rem" data-i18n="contact.btn_whatsapp">Open WhatsApp</span>
             </a>
             <a class="btn btn-ghost" href="mailto:anaklia20@gmail.com">
               <i class="fa-solid fa-envelope"></i>
-              <span style="margin-left:.5rem" class="i18n-ru">Send Email</span>
-              <span style="margin-left:.5rem" class="i18n-en">Send Email</span>
+              <span style="margin-left:.5rem" data-i18n="contact.btn_email">Send Email</span>
             </a>
           </div>
 
           <div class="subtle">
-            <div><b>WhatsApp:</b> +44 7440 448317</div>
-            <div><b>Email:</b> anaklia20@gmail.com</div>
+            <div><b data-i18n="contact.wa_label">WhatsApp:</b> +44 7440 448317</div>
+            <div><b data-i18n="contact.email_label">Email:</b> anaklia20@gmail.com</div>
           </div>
         </div>
 
         <div class="tile">
           <div class="subtle">
             <i class="fa-regular fa-file-lines" style="margin-right:.5rem"></i>
-            <span class="i18n-ru">По запросу: требования регуляторов и дорожная карта клинических фаз.</span>
-            <span class="i18n-en">Available on request: regulatory requirements and clinical roadmap.</span>
+            <span data-i18n="contact.req">Available on request: regulatory requirements and clinical roadmap.</span>
           </div>
         </div>
       </div>
     </section>
 
     <footer class="section">
-      <div class="foot">© TK — <span class="i18n-ru">Автор и владелец платформы Regulina-T™</span><span class="i18n-en">Author & owner of the Regulina-T™ platform</span></div>
+      <div class="foot" data-i18n="footer.copy">© TK — Author & owner of the Regulina-T™ platform</div>
     </footer>
   </main>
 
-  <!-- Mobile bottom CTA (компактная, центр, safe-area) -->
+  <!-- Mobile bottom CTA -->
   <div class="m-cta" aria-hidden="false">
     <div class="container">
       <div class="bar">
         <a class="btn btn-primary" href="https://wa.me/447440448317" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i> <span style="margin-left:.5rem">WhatsApp</span>
+          <i class="fa-brands fa-whatsapp"></i> <span style="margin-left:.5rem" data-i18n="cta.whatsapp">WhatsApp</span>
         </a>
         <a class="btn btn-ghost" href="mailto:anaklia20@gmail.com?subject=Regulina-T%20Investor%20Materials%20Request">
-          <i class="fa-regular fa-file-lines"></i>
-          <span style="margin-left:.5rem" class="i18n-ru">Материалы</span>
-          <span style="margin-left:.5rem" class="i18n-en">Materials</span>
+          <i class="fa-regular fa-file-lines"></i> <span style="margin-left:.5rem" data-i18n="cta.materials">Materials</span>
         </a>
       </div>
     </div>
   </div>
 
   <script>
-    // RU/EN toggle
-    const root = document.body;
+    // --- i18n dictionary (all texts centralized) ---
+    const i18n = {
+      en: {
+        nav: { tech: "Tech", license: "License", market: "Market", escrow: "Escrow", contact: "Contact" },
+        hero: {
+          kicker: "The world's first thymus immuno-regenerative platform",
+          lead: "Powered by the gene-engineered protein <b>RGN-T1™</b> (≥95% purity). A breakthrough technology designed to restore thymus function and re-balance the immune system.*"
+        },
+        usp: {
+          1: "Thymus Immunoregeneration",
+          2: "RGN-T1™ ≥95% purity",
+          3: "Escrow-ready IP package"
+        },
+        tech: {
+          h2: "Technology Foundation",
+          desc: "The platform targets age-related RGN decline to restore immune homeostasis.",
+          t1: { title: "Recombinant RGN-T1™ protein", text: "Lab-produced, reproducible, ≥95% purity." },
+          t2: { title: "Molecular-level know-how", text: "Gene, vector, host strain, expression & purification." },
+          t3: { title: "Injectable form (IV/IM)", text: "Standard dosing scheme; storage and stability." },
+          t4: { title: "Escrow transfer", text: "Materials and samples delivered via a protected escrow structure." },
+          note: "* The technology is subject to clinical validation. Commercialization includes preclinical work and Phases I–III per regulatory requirements."
+        },
+        license: {
+          h2: "Licensing Model",
+          i1: "<b>Global exclusive license</b> for 20 years.",
+          i2: "Licensee obligations: preclinical, in vitro/in vivo and clinical Phases I–III.",
+          i3: "Authorship & IP retained by TK; samples & full package via escrow."
+        },
+        market: {
+          h2: "Market Potential",
+          m1: { label: "Potential patients" },
+          m2: { label: "Target patients / year" },
+          m3: { label: "Expected revenue" }
+        },
+        pricing: {
+          h2: "Scientific & ethical pricing",
+          b1: "~9 injections/year (range 4–12).",
+          b2: "200 µg per dose — minimally sufficient.",
+          b3: "Average therapy cost: ~$900/year (max ~$1,600).",
+          b4: "Mass accessibility with sustainable unit economics.",
+          note: "Accessible pricing at scale with a transparent royalty model enables long-term revenues and strong social impact.",
+          win: "Win-Win for patients and licensee."
+        },
+        escrow: {
+          h2: "Escrow Package Contents",
+          i1: "Patent and IP filings",
+          i2: "Molecular know-how (gene, vector, host, expression)",
+          i3: "Final drug formula (with codes)",
+          i4: "Stabilizing buffer",
+          i5: "Injectable form (IV/IM), baseline dosing",
+          i6: "Storage conditions and shelf-life",
+          i7: "Complete purification scheme to ≥95%",
+          note: "Materials and samples are delivered via a secure escrow structure."
+        },
+        contact: {
+          h2: "Contact the Author & IP Owner",
+          btn_ndadeck: "Request NDA / Investor Deck",
+          btn_whatsapp: "Open WhatsApp",
+          btn_email: "Send Email",
+          wa_label: "WhatsApp:",
+          email_label: "Email:",
+          req: "Available on request: regulatory requirements and clinical roadmap."
+        },
+        footer: { copy: "© TK — Author & owner of the Regulina-T™ platform" },
+        cta: { whatsapp: "WhatsApp", materials: "Materials" }
+      },
+      ru: {
+        nav: { tech: "Технологии", license: "Лицензия", market: "Рынок", escrow: "Эскроу", contact: "Контакты" },
+        hero: {
+          kicker: "Первая в мире иммунорегенеративная платформа тимуса",
+          lead: "Основана на генно-инженерно полученном белке <b>RGN-T1™</b> (чистота ≥95%). Новая технология, способная восстанавливать функцию тимуса и регулировать иммунную систему.*"
+        },
+        usp: {
+          1: "Иммунорегенерация тимуса",
+          2: "RGN-T1™ ≥95% чистота",
+          3: "Эскроу-готовый пакет ИС"
+        },
+        tech: {
+          h2: "Технологическая основа",
+          desc: "Цель платформы — восполнить снижение уровня RGN с возрастом и восстановить иммунный гомеостаз.",
+          t1: { title: "Рекомбинантный белок RGN-T1™", text: "Лабораторно получаемый, воспроизводимый, чистота ≥95%." },
+          t2: { title: "Know-how на молекулярном уровне", text: "Ген, вектор, хост-штамм, экспрессия и очистка." },
+          t3: { title: "Инъекционная форма (IV/IM)", text: "Стандартная схема дозирования; хранение и стабильность." },
+          t4: { title: "Передача через эскроу", text: "Материалы и образцы предоставляются через защищённую эскроу-структуру." },
+          note: "* Технология подлежит клинической валидации. Коммерциализация включает доклинику и фазы I–III по требованиям регуляторов."
+        },
+        license: {
+          h2: "Лицензионная модель",
+          i1: "<b>Глобальная эксклюзивная лицензия</b> сроком на 20 лет.",
+          i2: "Обязанности лицензиата: доклиника, in vitro/in vivo и клинические фазы I–III.",
+          i3: "Авторство и права ИС сохраняются за TK; образцы и полный пакет — через эскроу."
+        },
+        market: {
+          h2: "Потенциал рынка",
+          m1: { label: "Потенциальные пациенты" },
+          m2: { label: "Целевая аудитория / год" },
+          m3: { label: "Ожидаемая выручка" }
+        },
+        pricing: {
+          h2: "Научные и этические основы ценообразования",
+          b1: "В среднем 9 инъекций/год (диапазон 4–12).",
+          b2: "200 мкг белка на дозу — минимально достаточный объём.",
+          b3: "Средняя стоимость терапии: ~$900/год (макс. ~$1 600/год).",
+          b4: "Массовая доступность при устойчивой экономике проекта.",
+          note: "Доступная цена при масштабировании и прозрачная модель роялти обеспечивают долгосрочную выручку и высокий социальный эффект.",
+          win: "Win-Win: пациент и лицензиат."
+        },
+        escrow: {
+          h2: "Состав эскроу-пакета",
+          i1: "Патентные и ИС-заявки",
+          i2: "Генно-инженерное know-how (ген, вектор, хост, экспрессия)",
+          i3: "Окончательная формула препарата (с кодами)",
+          i4: "Стабилизирующий буфер",
+          i5: "Инъекционная форма (IV/IM), базовая схема дозирования",
+          i6: "Условия хранения и срок годности",
+          i7: "Полная схема очистки до ≥95%",
+          note: "Материалы и образцы поставляются через безопасную эскроу-структуру."
+        },
+        contact: {
+          h2: "Связаться с автором и правообладателем",
+          btn_ndadeck: "Запросить NDA / Investor Deck",
+          btn_whatsapp: "Открыть WhatsApp",
+          btn_email: "Написать письмо",
+          wa_label: "WhatsApp:",
+          email_label: "Email:",
+          req: "По запросу: требования регуляторов и дорожная карта клинических фаз."
+        },
+        footer: { copy: "© TK — Автор и владелец платформы Regulina-T™" },
+        cta: { whatsapp: "WhatsApp", materials: "Материалы" }
+      }
+    };
+
+    // --- i18n engine ---
     const btnRU = document.getElementById('btnRU');
     const btnEN = document.getElementById('btnEN');
-    function setLang(l){
-      root.setAttribute('data-lang', l);
-      btnRU.classList.toggle('active', l==='ru');
-      btnEN.classList.toggle('active', l==='en');
-      document.documentElement.lang = l==='ru' ? 'ru' : 'en';
+
+    function applyTranslations(lang){
+      const dict = i18n[lang] || i18n.en;
+      document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
+      // set text/HTML for all [data-i18n]
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const key = el.getAttribute('data-i18n');
+        const value = key.split('.').reduce((acc,k)=>acc && acc[k], dict);
+        if (value != null){
+          // use innerHTML to support <b> where present in strings
+          el.innerHTML = value;
+        }
+      });
+      // toggle active state
+      btnRU.classList.toggle('active', lang==='ru');
+      btnEN.classList.toggle('active', lang==='en');
+      localStorage.setItem('lang', lang);
     }
+
+    function setLang(lang){ applyTranslations(lang); }
+
     btnRU.addEventListener('click', ()=>setLang('ru'));
     btnEN.addEventListener('click', ()=>setLang('en'));
-    setLang('ru');
 
-    // Анимация появления USP капсул по мере скролла
+    // Default language: EN on first visit, then user choice from localStorage
+    const stored = localStorage.getItem('lang');
+    setLang(stored || 'en');
+
+    // USP reveal animation
     const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
     }, {threshold:0.2});
     document.querySelectorAll('.usp-item').forEach(el=>io.observe(el));
   </script>
