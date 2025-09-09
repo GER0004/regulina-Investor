@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#090e1a" />
   <title>Regulina-T™ | RGN-T1™ IMMUNOREGULATOR — Investor One-Pager</title>
   <meta name="description" content="Regulina-T™ — первая в мире иммунорегенеративная платформа тимуса на основе RGN-T1™ (≥95% чистоты). Bilingual investor landing page.">
@@ -12,99 +12,119 @@
 
   <style>
     :root{
-      --bg:#090e1a; --ink:#e6f0ff; --sky:#6ab0ff; --indigo:#2e6cf6; --violet:#8b5cf6; --emerald:#21e3b5; --muted:#a7b3c6;
-      --section-y:60px;            /* единый вертикальный ритм секций */
-      --gap-card:24px;             /* зазор между карточками */
-      --btn-h:44px;                /* единая высота кнопок в блоках */
-      --btn-gap:14px;              /* вертикальные отступы в рядах кнопок */
+      --bg:#090e1a; --ink:#e6f0ff; --sky:#6ab0ff; --indigo:#2e6cf6; --emerald:#21e3b5;
+      --muted:#a7b3c6;
+      --section-y:60px;      /* единый вертикальный ритм (сверху/снизу) */
+      --gap-card:24px;       /* одинаковый зазор между карточками */
+      --btn-h:44px;          /* единая высота кнопок */
+      --btn-gap:14px;        /* вертикальные отступы рядов кнопок */
+      --mcta-pad:96px;       /* запас снизу под мобильную панель */
     }
+
     *{box-sizing:border-box}
+    html,body{height:100%}
     html,body{
-      margin:0;padding:0;background:
-        radial-gradient(1200px 700px at 20% -10%, rgba(139,92,246,.15), transparent 60%),
-        radial-gradient(1000px 600px at 95% 10%, rgba(46,108,246,.17), transparent 60%),
-        radial-gradient(900px 500px at 30% 105%, rgba(33,227,181,.10), transparent 60%),
+      margin:0;padding:0;overflow-x:hidden;
+      /* Фон без background-attachment: fixed. Размеры в vw, чтобы тянуться на всю ширину iPhone. */
+      background:
+        radial-gradient(60vw 35vw at 20% -10%, rgba(139,92,246,.18), transparent 60%),
+        radial-gradient(55vw 35vw at 95% 10%,  rgba(46,108,246,.18), transparent 60%),
+        radial-gradient(70vw 40vw at 30% 105%, rgba(33,227,181,.12), transparent 60%),
         var(--bg);
-      color:#fff; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background-repeat:no-repeat;
+      background-attachment:scroll;
+      color:#fff;
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
     }
+
     a{color:inherit;text-decoration:none}
     .container{max-width:1100px;margin:0 auto;padding:0 20px}
     .muted{color:#cfd6e6}
 
-    /* типографика и абзацы */
+    /* типографика и абзацы (единые интервалы) */
     p, ul, ol{margin:0 0 16px; line-height:1.6}
     ul{padding-left:1.1rem}
     .lead{color:#dce6fb;font-size:1.05rem}
     .subtle{color:#9fb2cf;font-size:.95rem}
 
-    .chip{display:inline-block;padding:.35rem .7rem;border-radius:999px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);font-size:.85rem}
+    .kicker{letter-spacing:.2em;text-transform:uppercase;color:#c7d2e0;font-size:.82rem}
+    .title{font-size:clamp(34px,5vw,60px);line-height:1.1;font-weight:700;
+      background:linear-gradient(90deg,#aee2ff,#c7c9ff,#b7ffe8);
+      -webkit-background-clip:text;background-clip:text;color:transparent}
+    .h2{font-size:clamp(26px,3.5vw,38px);font-weight:700}
+
+    /* сетки и карточки */
     .grid{display:grid;gap:var(--gap-card)}
     .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
     .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
     @media (max-width:900px){ .grid-2,.grid-3{grid-template-columns:1fr} }
 
-    /* кнопки */
+    .tile{
+      padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.12);
+      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      box-shadow:0 10px 30px rgba(0,0,0,.25)
+    }
+    .bullet{display:flex;gap:10px;align-items:flex-start}
+    .bullet i{margin-top:2px}
+
+    /* кнопки — одинаковая высота и интервалы */
     .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
          padding:.8rem 1.1rem;border-radius:16px;font-weight:600;min-height:var(--btn-h)}
     .btn-primary{background:linear-gradient(90deg,var(--sky),var(--indigo)); box-shadow:0 0 24px rgba(99,102,241,.35)}
     .btn-ghost{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15)}
     .btn-row{display:flex;flex-wrap:wrap;gap:12px; margin:var(--btn-gap) 0}
 
-    .kicker{letter-spacing:.2em;text-transform:uppercase;color:#c7d2e0;font-size:.82rem}
-    .title{font-size:clamp(34px,5vw,60px);line-height:1.1;font-weight:700;background:linear-gradient(90deg,#aee2ff,#c7c9ff,#b7ffe8);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .h2{font-size:clamp(26px,3.5vw,38px);font-weight:700}
-
+    /* шапка */
     header{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.05);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,.12)}
     nav a{color:#d0daea} nav a:hover{color:#fff}
     .row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
 
-    /* вертикальный переключатель языка: fixed, ниже шапки */
+    /* Переключатель языка: fixed, компактнее и выше */
     .lang{
-      position:fixed; top:80px; right:20px;
-      display:flex; flex-direction:column; gap:6px;
-      padding:6px; border:1px solid rgba(255,255,255,.15);
+      position:fixed; top:60px; right:20px; z-index:10;
+      display:flex; flex-direction:column; gap:4px;
+      padding:4px; border:1px solid rgba(255,255,255,.15);
       border-radius:12px; background:rgba(255,255,255,.08);
-      z-index:10; backdrop-filter:blur(6px)
+      backdrop-filter:blur(6px); font-size:0.85rem   /* -15% размера */
     }
-    .lang button{border:0;background:transparent;color:#cfe2ff;padding:.35rem .6rem;border-radius:10px;cursor:pointer}
+    .lang button{border:0;background:transparent;color:#cfe2ff;padding:.28rem .5rem;border-radius:10px;cursor:pointer;line-height:1}
     .lang button.active{background:rgba(255,255,255,.12);color:#fff}
 
+    /* секции — единый ритм */
     .hero{padding:var(--section-y) 0}
-    .section{padding:var(--section-y) 0}           /* единый ритм секций */
+    .section{padding:var(--section-y) 0}
     .grad-line{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent); margin:var(--section-y) 0 0}
-
-    .tile{padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,.12);
-          background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
-          box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .bullet{display:flex;gap:10px;align-items:flex-start}
-    .bullet i{margin-top:2px}
-    .nowrap{white-space:nowrap}
 
     /* языковые блоки */
     [data-lang="ru"] .i18n-en{display:none}
     [data-lang="en"] .i18n-ru{display:none}
 
-    /* Мобильная нижняя панель CTA — компактная (как раньше в 2 раза меньше) */
-    .m-cta{position:fixed;left:0;right:0;bottom:12px;padding:0 16px;z-index:10;display:none}
+    /* Мобильная нижняя панель CTA — центр и safe-area */
+    .m-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom));padding:0 16px;z-index:10;display:none;width:100%;max-width:1100px}
+    @supports (bottom: constant(safe-area-inset-bottom)){
+      .m-cta{bottom:calc(12px + constant(safe-area-inset-bottom))}
+    }
     .m-cta .bar{
       display:flex;gap:10px;border-radius:16px;background:rgba(255,255,255,.1);
       border:1px solid rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:8px;
-      transform:scale(.5); transform-origin:center bottom;
+      transform:scale(.5); transform-origin:center bottom;  /* компактно */
     }
     .m-cta .btn{flex:1;min-height:var(--btn-h)}
-    @media (max-width:768px){ .m-cta{display:block} }
+    @media (max-width:768px){
+      .m-cta{display:block}
+      /* запас снизу контента, чтобы панель не наезжала */
+      body{padding-bottom:calc(var(--mcta-pad) + env(safe-area-inset-bottom))}
+      @supports (padding: constant(safe-area-inset-bottom)){
+        body{padding-bottom:calc(var(--mcta-pad) + constant(safe-area-inset-bottom))}
+      }
+    }
 
-    /* футер — компактно и по ритму */
+    /* футер — компактный, в ритме */
     footer.section{padding:var(--section-y) 0}
     .foot{text-align:center;color:#a8b6cf}
   </style>
 </head>
 <body data-lang="ru">
-  <!-- декоративные свечения -->
-  <div style="position:absolute;filter:blur(80px);opacity:.55;border-radius:999px;pointer-events:none;user-select:none;top:-120px;left:-80px;width:420px;height:420px;background:radial-gradient(circle, rgba(139,92,246,.45), transparent 60%)"></div>
-  <div style="position:absolute;filter:blur(80px);opacity:.55;border-radius:999px;pointer-events:none;user-select:none;top:40%;right:-80px;width:420px;height:420px;background:radial-gradient(circle, rgba(46,108,246,.40), transparent 60%)"></div>
-  <div style="position:absolute;filter:blur(80px);opacity:.55;border-radius:999px;pointer-events:none;user-select:none;bottom:-80px;left:20%;width:520px;height:520px;background:radial-gradient(circle, rgba(33,227,181,.35), transparent 60%)"></div>
-
   <header>
     <div class="container row">
       <div class="muted" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:55vw">
@@ -118,7 +138,7 @@
         <a href="#escrow">Escrow</a>
         <a href="#contact">Contact</a>
       </nav>
-      <!-- вертикальный переключатель языка (fixed) -->
+      <!-- Вертикальный переключатель языка (fixed) -->
       <div class="lang"><button id="btnRU" class="active">RU</button><button id="btnEN">EN</button></div>
     </div>
   </header>
@@ -131,7 +151,6 @@
       <h1 class="title">Regulina-T™ <span class="nowrap">IMMUNOREGULATOR</span></h1>
       <p class="lead i18n-ru">Основана на генно-инженерно полученном белке <b>RGN-T1™</b> (чистота ≥95%). Новая технология, способная восстанавливать функцию тимуса и регулировать иммунную систему.*</p>
       <p class="lead i18n-en">Powered by the gene-engineered protein <b>RGN-T1™</b> (≥95% purity). A breakthrough technology designed to restore thymus function and re-balance the immune system.*</p>
-      <!-- в hero кнопок нет — по требованию -->
       <div class="chip">Thymus Immunoregeneration</div>
       <div class="chip">RGN-T1™ ≥95% purity</div>
       <div class="chip">Escrow-ready IP package</div>
@@ -153,8 +172,8 @@
             <div>
               <b class="i18n-ru">Рекомбинантный белок RGN-T1™</b>
               <b class="i18n-en">Recombinant RGN-T1™ protein</b>
-              <div class="subtle i18n-ru">Лабораторно получаемый, воспроизводимый, чистота ≥95% (по данным разработки).</div>
-              <div class="subtle i18n-en">Lab-produced, reproducible, ≥95% purity (per development data).</div>
+              <div class="subtle i18n-ru">Лабораторно получаемый, воспроизводимый, чистота ≥95%.</div>
+              <div class="subtle i18n-en">Lab-produced, reproducible, ≥95% purity.</div>
             </div>
           </div>
         </div>
@@ -162,10 +181,10 @@
           <div class="bullet">
             <i class="fa-solid fa-dna"></i>
             <div>
-              <b class="i18n-ru">Know-how на молекулярном уровне</b>
+              <b class="i18n-ru">Molecular-level know-how</b>
               <b class="i18n-en">Molecular-level know-how</b>
-              <div class="subtle i18n-ru">Синтез гена, вектор, хост-штамм, условия экспрессии и очистки до целевой чистоты.</div>
-              <div class="subtle i18n-en">Gene synthesis, vector, host strain, expression and purification to target purity.</div>
+              <div class="subtle i18n-ru">Ген, вектор, хост, экспрессия и очистка.</div>
+              <div class="subtle i18n-en">Gene, vector, host, expression & purification.</div>
             </div>
           </div>
         </div>
@@ -175,8 +194,8 @@
             <div>
               <b class="i18n-ru">Инъекционная форма (IV/IM)</b>
               <b class="i18n-en">Injectable form (IV/IM)</b>
-              <div class="subtle i18n-ru">Стандартная схема дозирования; условия хранения и стабильность.</div>
-              <div class="subtle i18n-en">Standard dosing scheme; storage and stability included.</div>
+              <div class="subtle i18n-ru">Дозирование, хранение, стабильность.</div>
+              <div class="subtle i18n-en">Dosing, storage, stability.</div>
             </div>
           </div>
         </div>
@@ -186,27 +205,27 @@
             <div>
               <b class="i18n-ru">Передача через эскроу</b>
               <b class="i18n-en">Escrow transfer</b>
-              <div class="subtle i18n-ru">Материалы и образцы предоставляются лицензиату через защищённую эскроу-структуру.</div>
-              <div class="subtle i18n-en">Materials and samples delivered to the licensee via a protected escrow structure.</div>
+              <div class="subtle i18n-ru">Материалы и образцы — через защищённую структуру.</div>
+              <div class="subtle i18n-en">Materials & samples via secured structure.</div>
             </div>
           </div>
         </div>
       </div>
 
-      <p class="subtle i18n-ru">* Технология находится на пути клинической валидации. Коммерциализация предполагает проведение доклиники и фаз I–III согласно требованиям регуляторов.</p>
-      <p class="subtle i18n-en">* The technology is subject to clinical validation. Commercialization includes preclinical work and Phases I–III per regulatory requirements.</p>
+      <p class="subtle i18n-ru">* Технология находится на пути клинической валидации. Коммерциализация предполагает доклинику и фазы I–III.</p>
+      <p class="subtle i18n-en">* Subject to clinical validation. Commercialization includes preclinical and Phases I–III.</p>
     </section>
 
     <div class="grad-line"></div>
 
-    <!-- LICENSING -->
+    <!-- LICENSE -->
     <section id="license" class="section anchor">
       <h2 class="h2 i18n-ru">Лицензионная модель</h2>
       <h2 class="h2 i18n-en">Licensing Model</h2>
       <div class="grid grid-3">
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-globe" style="margin-right:.5rem"></i><b class="i18n-ru">Глобальная эксклюзивная лицензия</b> <span class="i18n-ru">на 20 лет.</span><b class="i18n-en">Global exclusive license</b> <span class="i18n-en">for 20 years.</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-people-group" style="margin-right:.5rem"></i><span class="i18n-ru">Обязанности лицензиата: доклиника, in vitro/in vivo и фазы I–III.</span><span class="i18n-en">Licensee: preclinical, in vitro/in vivo and Phases I–III.</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-shield" style="margin-right:.5rem"></i><span class="i18n-ru">Авторство и ИС за TK; пакет через эскроу.</span><span class="i18n-en">Authorship & IP retained by TK; package via escrow.</span></div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-globe" style="margin-right:.5rem"></i><b>Global exclusive</b> — 20 years.</div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-people-group" style="margin-right:.5rem"></i>Preclinical, in vitro/in vivo, Phases I–III.</div></div>
+        <div class="tile"><div class="subtle"><i class="fa-solid fa-shield" style="margin-right:.5rem"></i>IP retained by TK; escrow delivery.</div></div>
       </div>
     </section>
 
@@ -216,6 +235,7 @@
     <section id="market" class="section anchor">
       <h2 class="h2 i18n-ru">Потенциал рынка</h2>
       <h2 class="h2 i18n-en">Market Potential</h2>
+
       <div class="grid grid-3">
         <div class="tile"><div class="subtle i18n-ru">Потенциальные пациенты</div><div class="subtle i18n-en">Potential patients</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~2,5 млрд</div></div>
         <div class="tile"><div class="subtle i18n-ru">Целевая аудитория/год</div><div class="subtle i18n-en">Target patients / year</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~50 млн</div></div>
@@ -223,118 +243,4 @@
       </div>
 
       <div class="grid grid-2" style="margin-top:var(--gap-card)">
-        <div class="tile">
-          <div class="h2 i18n-ru" style="font-size:1.05rem;margin-bottom:.8rem">Научные и этические основы ценообразования</div>
-          <div class="h2 i18n-en" style="font-size:1.05rem;margin-bottom:.8rem">Scientific & ethical pricing rationale</div>
-          <ul class="subtle">
-            <li class="i18n-ru">В среднем 9 инъекций/год (диапазон 4–12).</li>
-            <li class="i18n-ru">200 мкг белка на дозу — минимально достаточно.</li>
-            <li class="i18n-ru">Средняя стоимость: ~$900/год (макс. ~$1 600/год).</li>
-            <li class="i18n-ru">Доступность при устойчивой экономике (Win-Win).</li>
-            <li class="i18n-en">On average 9 injections/year (range 4–12).</li>
-            <li class="i18n-en">200 µg per dose — minimally sufficient.</li>
-            <li class="i18n-en">Avg therapy cost ~$900/year (max ~$1,600).</li>
-            <li class="i18n-en">Mass accessibility with sustainable unit economics (Win-Win).</li>
-          </ul>
-        </div>
-        <div class="tile">
-          <p class="subtle i18n-ru">Доступная цена при масштабе и прозрачной модели роялти обеспечивает долгосрочную выручку и социальную ценность.</p>
-          <p class="subtle i18n-en">Accessible pricing at scale with a transparent royalty model enables long-term revenues and strong social impact.</p>
-          <div class="subtle" style="margin-top:8px"><i class="fa-solid fa-shield-heart" style="margin-right:.5rem"></i><span class="i18n-ru">Win-Win: пациент и лицензиат.</span><span class="i18n-en">Win-Win for patients and licensee.</span></div>
-        </div>
-      </div>
-    </section>
-
-    <div class="grad-line"></div>
-
-    <!-- ESCROW -->
-    <section id="escrow" class="section anchor">
-      <h2 class="h2 i18n-ru">Состав эскроу-пакета</h2>
-      <h2 class="h2 i18n-en">Escrow Package Contents</h2>
-      <div class="grid grid-3">
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-file-lines" style="margin-right:.5rem"></i><span class="i18n-ru">Патентные и ИС-заявки</span><span class="i18n-en">Patent and IP filings</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-dna" style="margin-right:.5rem"></i><span class="i18n-ru">Генно-инженерное know-how (ген, вектор, хост, экспрессия)</span><span class="i18n-en">Molecular know-how (gene, vector, host, expression)</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-flask-vial" style="margin-right:.5rem"></i><span class="i18n-ru">Окончательная формула препарата (с кодами)</span><span class="i18n-en">Final drug formula (with codes)</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-droplet" style="margin-right:.5rem"></i><span class="i18n-ru">Стабилизирующий буфер</span><span class="i18n-en">Stabilizing buffer</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-syringe" style="margin-right:.5rem"></i><span class="i18n-ru">Инъекционная форма (IV/IM), базовая схема дозирования</span><span class="i18n-en">Injectable form (IV/IM), baseline dosing scheme</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-regular fa-snowflake" style="margin-right:.5rem"></i><span class="i18n-ru">Условия хранения и срок годности</span><span class="i18n-en">Storage conditions and shelf-life</span></div></div>
-        <div class="tile"><div class="subtle"><i class="fa-solid fa-filter-circle-dollar" style="margin-right:.5rem"></i><span class="i18n-ru">Полная схема очистки до ≥95%</span><span class="i18n-en">Complete purification scheme to ≥95%</span></div></div>
-      </div>
-      <p class="subtle i18n-ru">Поставка материалов и образцов осуществляется через безопасную эскроу-структуру.</p>
-      <p class="subtle i18n-en">Materials and samples are delivered via a secure escrow structure.</p>
-    </section>
-
-    <div class="grad-line"></div>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section anchor">
-      <h2 class="h2 i18n-ru">Связаться с автором и правообладателем</h2>
-      <h2 class="h2 i18n-en">Contact the Author & IP Owner</h2>
-
-      <div class="grid grid-2">
-        <div class="tile">
-          <a class="btn btn-primary" href="mailto:anaklia20@gmail.com?subject=Regulina-T%20NDA%20%2F%20Investor%20Deck">
-            <i class="fa-solid fa-envelope"></i><span class="i18n-ru" style="margin-left:.5rem">Запросить NDA/Investor Deck</span><span class="i18n-en" style="margin-left:.5rem">Request NDA / Investor Deck</span>
-          </a>
-
-          <div class="btn-row">
-            <a class="btn btn-ghost" href="https://wa.me/447440448317" target="_blank" rel="noopener">
-              <i class="fa-brands fa-whatsapp"></i><span style="margin-left:.5rem" class="i18n-ru">Открыть WhatsApp</span><span style="margin-left:.5rem" class="i18n-en">Open WhatsApp</span>
-            </a>
-            <a class="btn btn-ghost" href="mailto:anaklia20@gmail.com">
-              <i class="fa-solid fa-envelope"></i><span style="margin-left:.5rem" class="i18n-ru">Написать письмо</span><span style="margin-left:.5rem" class="i18n-en">Send Email</span>
-            </a>
-          </div>
-
-          <div class="subtle">
-            <div><b>WhatsApp:</b> +44 7440 448317</div>
-            <div><b>Email:</b> anaklia20@gmail.com</div>
-          </div>
-        </div>
-
-        <div class="tile">
-          <div class="subtle">
-            <i class="fa-regular fa-file-lines" style="margin-right:.5rem"></i>
-            <span class="i18n-ru">По запросу: требования регуляторов и дорожная карта клинических фаз.</span>
-            <span class="i18n-en">Available on request: regulatory requirements and clinical roadmap.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="section">
-      <div class="foot">© TK — <span class="i18n-ru">Автор и владелец платформы Regulina-T™</span><span class="i18n-en">Author & owner of the Regulina-T™ platform</span></div>
-    </footer>
-  </main>
-
-  <!-- Mobile bottom CTA (компактная) -->
-  <div class="m-cta" aria-hidden="false">
-    <div class="container">
-      <div class="bar">
-        <a class="btn btn-primary" href="https://wa.me/447440448317" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i> <span style="margin-left:.5rem">WhatsApp</span>
-        </a>
-        <a class="btn btn-ghost" href="mailto:anaklia20@gmail.com?subject=Regulina-T%20Investor%20Materials%20Request">
-          <i class="fa-regular fa-file-lines"></i> <span style="margin-left:.5rem" class="i18n-ru">Материалы</span><span style="margin-left:.5rem" class="i18n-en">Materials</span>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // RU/EN toggle
-    const root = document.body;
-    const btnRU = document.getElementById('btnRU');
-    const btnEN = document.getElementById('btnEN');
-    function setLang(l){
-      root.setAttribute('data-lang', l);
-      btnRU.classList.toggle('active', l==='ru');
-      btnEN.classList.toggle('active', l==='en');
-      document.documentElement.lang = l==='ru' ? 'ru' : 'en';
-    }
-    btnRU.addEventListener('click', ()=>setLang('ru'));
-    btnEN.addEventListener('click', ()=>setLang('en'));
-    setLang('ru');
-  </script>
-</body>
-</html>
+        <div class="ti
