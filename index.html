@@ -12,9 +12,9 @@
 
   <style>
     :root{
-      --bg:#090e1a; --ink:#e6f0ff; --sky:#6ab0ff; --indigo:#2e6cf6; --emerald:#21e3b5; --muted:#a7b3c6;
+      --bg:#090e1a; --ink:#e6f0ff; --sky:#6ab0ff; --indigo:#2e6cf6; --violet:#8b5cf6; --emerald:#21e3b5; --muted:#a7b3c6;
       --section-y:60px;   /* единые отступы секций сверху/снизу */
-      --gap-card:24px;    /* одинаковые зазоры между карточками */
+      --gap-card:24px;    /* одинаковые зазоры между карточками/элементами */
       --btn-h:44px;       /* единая высота кнопок */
       --btn-gap:14px;     /* одинаковые интервалы между рядами кнопок */
       --mcta-pad:96px;    /* запас снизу под мобильную панель */
@@ -107,6 +107,48 @@
     [data-lang="ru"] .i18n-en{display:none}
     [data-lang="en"] .i18n-ru{display:none}
 
+    /* ===== USP: капсулы с градиентной обводкой и glow ===== */
+    .usp{margin-top:18px}
+    .usp-grid{
+      display:grid; gap:12px;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+    }
+    @media (max-width:900px){ .usp-grid{grid-template-columns:1fr} }
+
+    .usp-item{
+      position:relative; border-radius:999px;
+      padding:12px 16px; display:flex; align-items:center; gap:12px;
+      background:rgba(255,255,255,.06);
+      box-shadow:
+        0 10px 30px rgba(0,0,0,.25),
+        0 0 22px rgba(106,176,255,.10),
+        0 0 28px rgba(139,92,246,.06);
+      overflow:hidden;
+      opacity:0; transform:translateY(10px); /* для анимации появления */
+    }
+    /* градиентная «обводка» через маску */
+    .usp-item::before{
+      content:""; position:absolute; inset:0; padding:1px; border-radius:inherit;
+      background:linear-gradient(90deg, var(--sky), var(--violet));
+      -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude; pointer-events:none;
+    }
+    /* мягкий внутренний glow */
+    .usp-item::after{
+      content:""; position:absolute; inset:-12px; border-radius:inherit;
+      background:radial-gradient(30rem 8rem at 20% 50%, rgba(106,176,255,.12), transparent 60%);
+      filter:blur(16px); z-index:-1;
+    }
+    .usp-icon{font-size:1.15rem; color:#d6e6ff; transition:transform .25s ease, filter .25s ease}
+    .usp-text{font-weight:600; letter-spacing:.2px}
+    .usp-item:hover .usp-icon,
+    .usp-item:active .usp-icon{
+      filter:drop-shadow(0 0 8px rgba(106,176,255,.7));
+      transform:translateY(-1px) scale(1.02);
+    }
+    /* состояние после входа в зону видимости */
+    .usp-item.in{opacity:1; transform:none; transition:opacity .6s ease, transform .6s ease}
+
     /* Мобильная нижняя панель CTA — по центру и с safe-area */
     .m-cta{
       position:fixed; left:50%; transform:translateX(-50%);
@@ -163,9 +205,34 @@
       <h1 class="title">Regulina-T™ <span class="nowrap">IMMUNOREGULATOR</span></h1>
       <p class="lead i18n-ru">Основана на генно-инженерно полученном белке <b>RGN-T1™</b> (чистота ≥95%). Новая технология, способная восстанавливать функцию тимуса и регулировать иммунную систему.*</p>
       <p class="lead i18n-en">Powered by the gene-engineered protein <b>RGN-T1™</b> (≥95% purity). A breakthrough technology designed to restore thymus function and re-balance the immune system.*</p>
-      <div class="chip">Thymus Immunoregeneration</div>
-      <div class="chip">RGN-T1™ ≥95% purity</div>
-      <div class="chip">Escrow-ready IP package</div>
+
+      <!-- ========= USP PILL BLOCK ========= -->
+      <div class="usp">
+        <div class="usp-grid">
+          <div class="usp-item reveal">
+            <i class="fa-solid fa-dna usp-icon" aria-hidden="true"></i>
+            <div class="usp-text">
+              <span class="i18n-en">Thymus Immunoregeneration</span>
+              <span class="i18n-ru">Иммунорегенерация тимуса</span>
+            </div>
+          </div>
+          <div class="usp-item reveal">
+            <i class="fa-solid fa-flask-vial usp-icon" aria-hidden="true"></i>
+            <div class="usp-text">
+              <span class="i18n-en">RGN-T1™ ≥95% purity</span>
+              <span class="i18n-ru">RGN-T1™ ≥95% чистота</span>
+            </div>
+          </div>
+          <div class="usp-item reveal">
+            <i class="fa-solid fa-file-shield usp-icon" aria-hidden="true"></i>
+            <div class="usp-text">
+              <span class="i18n-en">Escrow-ready IP package</span>
+              <span class="i18n-ru">Эскроу-готовый пакет ИС</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ========= /USP ========= -->
     </section>
 
     <div class="grad-line"></div>
@@ -312,7 +379,7 @@
             </a>
             <a class="btn btn-ghost" href="mailto:anaklia20@gmail.com">
               <i class="fa-solid fa-envelope"></i>
-              <span style="margin-left:.5rem" class="i18n-ru">Написать письмо</span>
+              <span style="margin-left:.5rem" class="i18n-ru">Send Email</span>
               <span style="margin-left:.5rem" class="i18n-en">Send Email</span>
             </a>
           </div>
@@ -368,6 +435,14 @@
     btnRU.addEventListener('click', ()=>setLang('ru'));
     btnEN.addEventListener('click', ()=>setLang('en'));
     setLang('ru');
+
+    // Анимация появления USP капсул по мере скролла
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.2});
+    document.querySelectorAll('.usp-item').forEach(el=>io.observe(el));
   </script>
 </body>
 </html>
