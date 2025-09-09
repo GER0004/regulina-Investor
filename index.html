@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#090e1a" />
   <title>Regulina-T™ | RGN-T1™ IMMUNOREGULATOR — Investor One-Pager</title>
   <meta name="description" content="Regulina-T™ — the world's first thymus immuno-regenerative platform powered by RGN-T1™ (≥95% purity). Bilingual investor landing page.">
-  <!-- Font Awesome (icons) -->
+  <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" referrerpolicy="no-referrer" />
   <style>
     :root{
@@ -66,6 +66,8 @@
     .usp-text{font-weight:600;letter-spacing:.2px}
     .usp-item:hover .usp-icon,.usp-item:active .usp-icon{filter:drop-shadow(0 0 8px rgba(106,176,255,.7));transform:translateY(-1px) scale(1.02)}
     .usp-item.in{opacity:1;transform:none;transition:opacity .6s ease, transform .6s ease}
+    /* Metrics styling */
+    .metric{font-size:1.5rem;font-weight:700;margin-top:8px}
     /* Mobile bottom CTA */
     .m-cta{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(12px + env(safe-area-inset-bottom));padding:0 16px;z-index:10;display:none;width:100%;max-width:1100px}
     @supports (bottom: constant(safe-area-inset-bottom)){ .m-cta{bottom:calc(12px + constant(safe-area-inset-bottom))} }
@@ -182,9 +184,18 @@
     <section id="market" class="section anchor">
       <h2 class="h2" data-i18n="market.h2">Market Potential</h2>
       <div class="grid grid-3">
-        <div class="tile"><div class="subtle" data-i18n="market.m1.label">Potential patients</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~2.5B</div></div>
-        <div class="tile"><div class="subtle" data-i18n="market.m2.label">Target patients / year</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">~50M</div></div>
-        <div class="tile"><div class="subtle" data-i18n="market.m3.label">Expected revenue</div><div style="font-size:1.5rem;font-weight:700;margin-top:8px">&gt;$50B/yr</div></div>
+        <div class="tile">
+          <div class="subtle" data-i18n="market.m1.label">Potential patients</div>
+          <div class="metric" data-i18n="market.m1.value">~2.5B</div>
+        </div>
+        <div class="tile">
+          <div class="subtle" data-i18n="market.m2.label">Target patients / year</div>
+          <div class="metric" data-i18n="market.m2.value">~50M</div>
+        </div>
+        <div class="tile">
+          <div class="subtle" data-i18n="market.m3.label">Expected revenue</div>
+          <div class="metric" data-i18n="market.m3.value">&gt;$50B per year</div>
+        </div>
       </div>
 
       <div class="grid grid-2" style="margin-top:var(--gap-card)">
@@ -229,17 +240,18 @@
 
       <div class="grid grid-2">
         <div class="tile">
-          <a class="btn btn-primary" href="mailto:anaklia20@gmail.com?subject=Regulina-T%20NDA%20%2F%20Investor%20Deck">
+          <!-- Email button (NDA/Deck) -->
+          <a class="btn btn-primary" id="emailNDA" data-email href="#">
             <i class="fa-solid fa-envelope"></i>
             <span style="margin-left:.5rem" data-i18n="contact.btn_ndadeck">Request NDA / Investor Deck</span>
           </a>
 
           <div class="btn-row">
-            <a class="btn btn-ghost" href="https://wa.me/447440448317" target="_blank" rel="noopener">
+            <a class="btn btn-ghost" id="waTop" data-wa href="#">
               <i class="fa-brands fa-whatsapp"></i>
               <span style="margin-left:.5rem" data-i18n="contact.btn_whatsapp">Open WhatsApp</span>
             </a>
-            <a class="btn btn-ghost" href="mailto:anaklia20@gmail.com">
+            <a class="btn btn-ghost" id="emailTop" data-email href="#">
               <i class="fa-solid fa-envelope"></i>
               <span style="margin-left:.5rem" data-i18n="contact.btn_email">Send Email</span>
             </a>
@@ -269,18 +281,14 @@
   <div class="m-cta" aria-hidden="false">
     <div class="container">
       <div class="bar">
-        <a class="btn btn-primary" href="https://wa.me/447440448317" target="_blank" rel="noopener">
-          <i class="fa-brands fa-whatsapp"></i> <span style="margin-left:.5rem" data-i18n="cta.whatsapp">WhatsApp</span>
-        </a>
-        <a class="btn btn-ghost" href="mailto:anaklia20@gmail.com?subject=Regulina-T%20Investor%20Materials%20Request">
-          <i class="fa-regular fa-file-lines"></i> <span style="margin-left:.5rem" data-i18n="cta.materials">Materials</span>
-        </a>
+        <a class="btn btn-primary" id="waCta" data-wa href="#"><i class="fa-brands fa-whatsapp"></i> <span style="margin-left:.5rem" data-i18n="cta.whatsapp">WhatsApp</span></a>
+        <a class="btn btn-ghost" id="emailCta" data-email href="#"><i class="fa-regular fa-file-lines"></i> <span style="margin-left:.5rem" data-i18n="cta.materials">Materials</span></a>
       </div>
     </div>
   </div>
 
   <script>
-    // --- i18n dictionary (all texts centralized) ---
+    // ===== Centralized i18n dictionary =====
     const i18n = {
       en: {
         nav: { tech: "Tech", license: "License", market: "Market", escrow: "Escrow", contact: "Contact" },
@@ -288,11 +296,7 @@
           kicker: "The world's first thymus immuno-regenerative platform",
           lead: "Powered by the gene-engineered protein <b>RGN-T1™</b> (≥95% purity). A breakthrough technology designed to restore thymus function and re-balance the immune system.*"
         },
-        usp: {
-          1: "Thymus Immunoregeneration",
-          2: "RGN-T1™ ≥95% purity",
-          3: "Escrow-ready IP package"
-        },
+        usp: { 1: "Thymus Immunoregeneration", 2: "RGN-T1™ ≥95% purity", 3: "Escrow-ready IP package" },
         tech: {
           h2: "Technology Foundation",
           desc: "The platform targets age-related RGN decline to restore immune homeostasis.",
@@ -310,9 +314,9 @@
         },
         market: {
           h2: "Market Potential",
-          m1: { label: "Potential patients" },
-          m2: { label: "Target patients / year" },
-          m3: { label: "Expected revenue" }
+          m1: { label: "Potential patients", value: "~2.5B" },
+          m2: { label: "Target patients / year", value: "~50M" },
+          m3: { label: "Expected revenue", value: ">$50B per year" }
         },
         pricing: {
           h2: "Scientific & ethical pricing",
@@ -344,7 +348,22 @@
           req: "Available on request: regulatory requirements and clinical roadmap."
         },
         footer: { copy: "© TK — Author & owner of the Regulina-T™ platform" },
-        cta: { whatsapp: "WhatsApp", materials: "Materials" }
+        cta: { whatsapp: "WhatsApp", materials: "Materials" },
+        msg: {
+          subject: "Regulina-T – NDA / Investor Deck request",
+          body:
+`Hello! I’m interested in the Regulina-T™ Immunoregulator project.
+Please share the NDA / Investor Deck and basic terms.
+
+Name:
+Company:
+Country:
+Email:
+WhatsApp:
+Notes:
+
+Source: {{url}}`
+        }
       },
       ru: {
         nav: { tech: "Технологии", license: "Лицензия", market: "Рынок", escrow: "Эскроу", contact: "Контакты" },
@@ -352,11 +371,7 @@
           kicker: "Первая в мире иммунорегенеративная платформа тимуса",
           lead: "Основана на генно-инженерно полученном белке <b>RGN-T1™</b> (чистота ≥95%). Новая технология, способная восстанавливать функцию тимуса и регулировать иммунную систему.*"
         },
-        usp: {
-          1: "Иммунорегенерация тимуса",
-          2: "RGN-T1™ ≥95% чистота",
-          3: "Эскроу-готовый пакет ИС"
-        },
+        usp: { 1: "Иммунорегенерация тимуса", 2: "RGN-T1™ ≥95% чистота", 3: "Эскроу-готовый пакет ИС" },
         tech: {
           h2: "Технологическая основа",
           desc: "Цель платформы — восполнить снижение уровня RGN с возрастом и восстановить иммунный гомеостаз.",
@@ -374,9 +389,9 @@
         },
         market: {
           h2: "Потенциал рынка",
-          m1: { label: "Потенциальные пациенты" },
-          m2: { label: "Целевая аудитория / год" },
-          m3: { label: "Ожидаемая выручка" }
+          m1: { label: "Потенциальные пациенты", value: "~2,5 млрд" },
+          m2: { label: "Целевая аудитория / год", value: "~50 млн" },
+          m3: { label: "Ожидаемая выручка", value: "> $50 млрд в год" }
         },
         pricing: {
           h2: "Научные и этические основы ценообразования",
@@ -408,40 +423,70 @@
           req: "По запросу: требования регуляторов и дорожная карта клинических фаз."
         },
         footer: { copy: "© TK — Автор и владелец платформы Regulina-T™" },
-        cta: { whatsapp: "WhatsApp", materials: "Материалы" }
+        cta: { whatsapp: "WhatsApp", materials: "Материалы" },
+        msg: {
+          subject: "Regulina-T — Запрос NDA / инвест-материалов",
+          body:
+`Здравствуйте! Интересуюсь проектом Regulina-T™ Immunoregulator.
+Пожалуйста, пришлите NDA / инвест-материалы и базовые условия.
+
+Имя:
+Компания:
+Страна:
+Email:
+WhatsApp:
+Комментарий:
+
+Источник: {{url}}`
+        }
       }
     };
 
-    // --- i18n engine ---
+    // ===== i18n rendering + dynamic links =====
     const btnRU = document.getElementById('btnRU');
     const btnEN = document.getElementById('btnEN');
 
-    function applyTranslations(lang){
+    function fillText(lang){
       const dict = i18n[lang] || i18n.en;
       document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
-      // set text/HTML for all [data-i18n]
       document.querySelectorAll('[data-i18n]').forEach(el=>{
         const key = el.getAttribute('data-i18n');
         const value = key.split('.').reduce((acc,k)=>acc && acc[k], dict);
-        if (value != null){
-          // use innerHTML to support <b> where present in strings
-          el.innerHTML = value;
-        }
+        if (value != null) el.innerHTML = value;
       });
-      // toggle active state
+    }
+
+    function encodeMailto(subject, body){
+      return `mailto:anaklia20@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+    function encodeWhatsApp(text){
+      return `https://wa.me/447440448317?text=${encodeURIComponent(text)}`;
+    }
+
+    function updateContactLinks(lang){
+      const d = i18n[lang] || i18n.en;
+      const url = window.location.href;
+      const body = d.msg.body.replace('{{url}}', url);
+      const mail = encodeMailto(d.msg.subject, body);
+      const wa = encodeWhatsApp(body);
+      document.querySelectorAll('[data-email]').forEach(a=>a.setAttribute('href', mail));
+      document.querySelectorAll('[data-wa]').forEach(a=>a.setAttribute('href', wa));
+    }
+
+    function applyLang(lang){
+      fillText(lang);
+      updateContactLinks(lang);
       btnRU.classList.toggle('active', lang==='ru');
       btnEN.classList.toggle('active', lang==='en');
       localStorage.setItem('lang', lang);
     }
 
-    function setLang(lang){ applyTranslations(lang); }
+    btnRU.addEventListener('click', ()=>applyLang('ru'));
+    btnEN.addEventListener('click', ()=>applyLang('en'));
 
-    btnRU.addEventListener('click', ()=>setLang('ru'));
-    btnEN.addEventListener('click', ()=>setLang('en'));
-
-    // Default language: EN on first visit, then user choice from localStorage
-    const stored = localStorage.getItem('lang');
-    setLang(stored || 'en');
+    // Default EN on first visit, else saved
+    const saved = localStorage.getItem('lang') || 'en';
+    applyLang(saved);
 
     // USP reveal animation
     const io = new IntersectionObserver((entries)=>{
